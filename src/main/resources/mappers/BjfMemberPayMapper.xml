@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjf.mapper.BjfMemberPayMapper">
+  <resultMap id="BaseResultMap" type="com.bjf.pojo.BjfMemberPay">
+    <id column="mbp_id" jdbcType="INTEGER" property="mbpId" />
+    <result column="mbp_month" jdbcType="INTEGER" property="mbpMonth" />
+    <result column="mbp_money" jdbcType="DOUBLE" property="mbpMoney" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mbp_id, mbp_month, mbp_money
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bjf_member_pay
+    ORDER BY `mbp_month`
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bjf_member_pay
+    where mbp_id = #{mbpId,jdbcType=INTEGER}
+  </select>
+
+</mapper>

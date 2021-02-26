@@ -1,0 +1,194 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*商标*/
+.img1 {
+  margin-left: 540px;
+}
+
+/*主体容器*/
+.content {
+  margin-top: 30px;
+}
+
+/*注册表单整体*/
+.register {
+  border: 1px solid;
+  height: 700px;
+  width: 800px;
+  border-radius: 17px;
+}
+
+.title {
+  width: 798px;
+  height: 60px;
+  background-color: #d9d9d9;
+  border-radius: 17px 17px 0 0;
+}
+
+/*新用户注册*/
+.title span,a {
+  font-family: SimHei, serif;
+  font-size: 20px;
+  font-stretch: normal;
+  letter-spacing: 0;
+  color: #ffffff;
+  margin-left: 20px;
+  margin-top: 20px;
+  float: left;
+  font-weight: bolder;
+}
+.title a{
+  float: right;
+  margin-right: 20px;
+}
+
+/*去登陆*/
+.login {
+  float: right;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.login span {
+  font-family: SimHei, serif;
+  font-size: 20px;
+  font-weight: normal;
+  font-stretch: normal;
+  letter-spacing: 0;
+  color: #ffffff;
+}
+
+.border {
+  border: 3px solid;
+  height: 900px;
+  width: 1000px;
+}
+
+/*表单结构*/
+form {
+  margin-top: 40px;
+  width: 450px;
+  margin-left: 155px;
+}
+
+form label {
+  font-family: SimHei, serif;
+  font-weight: bolder;
+  font-stretch: normal;
+  color: #0f0f0f;
+}
+
+#woman {
+  margin-left: 30px;
+}
+
+/*提交按钮*/
+.btn {
+  width: 450px;
+  height: 36px;
+  background-color: #6982fe;
+  text-decoration: none;
+}
+
+/*用户协议*/
+.checkbox {
+  text-align: center;
+}
+
+.checkbox a {
+  color: #0f0f0f;
+}
+
+/*底部容器*/
+.footer {
+  margin-top: 30px;
+  color: black;
+  font-size: 15px;
+}
+
+.footer ul {
+  text-align: center;
+}
+
+.footer ul span {
+  margin-left: 40px;
+  font-family: SimHei, serif;
+  font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: #000000;
+}
+
+.sweetAlert {
+  color: red;
+}
+
+/*发送验证码按钮*/
+#sendCheck {
+  width: 89px;
+  float: left;
+  height: 35px;
+}
+
+#J_resetCode {
+  width: 89px;
+  float: left;
+  height: 35px;
+  font-size: 12px;
+}
+
+#J_resetCode:hover {
+  cursor: not-allowed;
+  /* 光标是一个红色的圈加一个斜杠）*/
+}
+
+#J_second {
+  font-size: 12px;
+}
+
+/*验证码小表单*/
+.checkGroup {
+  float: left;
+  margin-bottom: 35px;
+}
+
+.innerBox {
+  display: flex;
+  flex-direction: row;
+  width: 450px;
+  margin-bottom: -20px;
+}
+
+#border {
+  display: flex;
+  justify-content: center;
+}
+
+#fm {
+  margin-top: 130px;
+  margin-left: 170px;
+}
+
+#checkError {
+  position: relative;
+  top: -16px;
+}
+
+#another {
+  position: absolute;
+  pointer-events: none;
+  top: 260px;
+  right: 600px;
+  z-index: 1;
+}
+
+#another a {
+  text-decoration: none;
+  color: red;
+  font-size: 16px;
+}

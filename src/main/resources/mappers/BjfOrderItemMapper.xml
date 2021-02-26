@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjf.mapper.BjfOrderItemMapper">
+  <resultMap id="BaseResultMap" type="com.bjf.pojo.BjfOrderItem">
+    <id column="oi_id" jdbcType="INTEGER" property="oiId" />
+    <result column="od_delid" jdbcType="VARCHAR" property="odDelid" />
+    <result column="cmd_id" jdbcType="INTEGER" property="cmdId" />
+    <result column="oi_name" jdbcType="VARCHAR" property="oiName" />
+    <result column="oi_image" jdbcType="VARCHAR" property="oiImage" />
+    <result column="oi_price" jdbcType="DECIMAL" property="oiPrice" />
+    <result column="oi_num" jdbcType="INTEGER" property="oiNum" />
+    <result column="oi_content" jdbcType="VARCHAR" property="oiContent" />
+    <result column="spf_id" jdbcType="INTEGER" property="spfId" />
+    <result column="oi_support" jdbcType="INTEGER" property="oiSupport" />
+    <result column="oi_status" jdbcType="INTEGER" property="oiStatus"/>
+    <result column="oi_time" jdbcType="VARCHAR" property="oiTime"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    oi_id, od_delid, cmd_id, oi_name, oi_image, oi_price, oi_num, oi_content, spf_id, 
+    oi_support,oi_status
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select bjf_order_item.oi_support from bjf_order_item where od_delid = #{odDelid}
+  </select>
+  <select id="selectAllBack" resultMap="BaseResultMap">
+    select * from bjf_order_item where od_delid = #{odDelid}
+  </select>
+  <!--获取所有可支持退款的商品-->
+  <select id="selectAllSupport" resultMap="BaseResultMap">
+    SELECT * FROM bjf_order_item WHERE od_delid = #{odDelid}
+  </select>
+
+  <!--修改是否支持退货-->
+  <update id="updateItemSupport">
+    update
+        bjf_order_item
+    set
+        bjf_order_item.oi_support = #{param2}
+    where
+        bjf_order_item.od_delid = #{param1}
+  </update>
+
+  <!--获取商品退货时间-->
+  <select id="selectGoodsBackTime" resultType="string">
+    select oi_time from bjf_order_item where od_delid = #{param1} and cmd_id=#{param2}
+  </select>
+
+  <!--修改商品退款状态-->
+  <update id="updateOIStatus">
+    update bjf_order_item set bjf_order_item.oi_status = #{param3}
+    where bjf_order_item.od_delid = #{param1} and bjf_order_item.oi_id = #{param2}
+  </update>
+
+  <!--获取单个商品的信息-->
+  <select id="selectBackItem" resultMap="BaseResultMap">
+    select * from bjf_order_item where bjf_order_item.od_delid = #{param1} and bjf_order_item.oi_id = #{param2}
+  </select>
+
+  <!-- 用户评价完更改订单详情表的状态 -->
+  <update id="updateSupportByDelidAndCmdId" parameterType="com.bjf.pojo.BjfOrderItem">
+     update bjf_order_item
+    set
+    oi_status = #{oiStatus,jdbcType=INTEGER}
+     where oi_id=#{oiId,jdbcType=INTEGER};
+  </update>
+
+  <select id="selectByDelid" parameterType="java.lang.String" resultType="java.lang.String">
+    select
+    oi_name
+    from bjf_order_item
+    where od_delid=#{odDelid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bjf_order_item
+    where oi_id = #{oiId,jdbcType=INTEGER}
+  </select>
+    <select id="findItemsByNo" resultMap="BaseResultMap">
+    SELECT
+        *
+    FROM
+        bjf_order_item
+    WHERE
+        od_delid=#{outTradeNo}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bjf_order_item
+    where oi_id = #{oiId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="oi_id" keyProperty="oiId" parameterType="com.bjf.pojo.BjfOrderItem" useGeneratedKeys="true">
+    insert into bjf_order_item (od_delid, cmd_id, oi_name,
+      oi_image, oi_price, oi_num,
+      oi_content, spf_id, oi_support
+      )
+    values (#{odDelid,jdbcType=VARCHAR}, #{cmdId,jdbcType=INTEGER}, #{oiName,jdbcType=VARCHAR},
+      #{oiImage,jdbcType=VARCHAR}, #{oiPrice,jdbcType=DECIMAL}, #{oiNum,jdbcType=INTEGER},
+      #{oiContent,jdbcType=VARCHAR}, #{spfId,jdbcType=INTEGER}, #{oiSupport,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="oi_id" keyProperty="oiId" parameterType="com.bjf.pojo.BjfOrderItem" useGeneratedKeys="true">
+    insert into bjf_order_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="odDelid != null">
+        od_delid,
+      </if>
+      <if test="cmdId != null">
+        cmd_id,
+      </if>
+      <if test="oiName != null">
+        oi_name,
+      </if>
+      <if test="oiImage != null">
+        oi_image,
+      </if>
+      <if test="oiPrice != null">
+        oi_price,
+      </if>
+      <if test="oiNum != null">
+        oi_num,
+      </if>
+      <if test="oiContent != null">
+        oi_content,
+      </if>
+      <if test="spfId != null">
+        spf_id,
+      </if>
+      <if test="oiSupport != null">
+        oi_support,
+      </if>
+      <if test="oiStatus != null">
+        oi_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="odDelid != null">
+        #{odDelid,jdbcType=VARCHAR},
+      </if>
+      <if test="cmdId != null">
+        #{cmdId,jdbcType=INTEGER},
+      </if>
+      <if test="oiName != null">
+        #{oiName,jdbcType=VARCHAR},
+      </if>
+      <if test="oiImage != null">
+        #{oiImage,jdbcType=VARCHAR},
+      </if>
+      <if test="oiPrice != null">
+        #{oiPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="oiNum != null">
+        #{oiNum,jdbcType=INTEGER},
+      </if>
+      <if test="oiContent != null">
+        #{oiContent,jdbcType=VARCHAR},
+      </if>
+      <if test="spfId != null">
+        #{spfId,jdbcType=INTEGER},
+      </if>
+      <if test="oiSupport != null">
+        #{oiSupport,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bjf.pojo.BjfOrderItem">
+    update bjf_order_item
+    <set>
+      <if test="odDelid != null">
+        od_delid = #{odDelid,jdbcType=VARCHAR},
+      </if>
+      <if test="cmdId != null">
+        cmd_id = #{cmdId,jdbcType=INTEGER},
+      </if>
+      <if test="oiName != null">
+        oi_name = #{oiName,jdbcType=VARCHAR},
+      </if>
+      <if test="oiImage != null">
+        oi_image = #{oiImage,jdbcType=VARCHAR},
+      </if>
+      <if test="oiPrice != null">
+        oi_price = #{oiPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="oiNum != null">
+        oi_num = #{oiNum,jdbcType=INTEGER},
+      </if>
+      <if test="oiContent != null">
+        oi_content = #{oiContent,jdbcType=VARCHAR},
+      </if>
+      <if test="spfId != null">
+        spf_id = #{spfId,jdbcType=INTEGER},
+      </if>
+      <if test="oiSupport != null">
+        oi_support = #{oiSupport,jdbcType=INTEGER},
+      </if>
+      <if test="oiStatus != null">
+        oi_status = #{oiStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where oi_id = #{oiId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bjf.pojo.BjfOrderItem">
+    update bjf_order_item
+    set od_delid = #{odDelid,jdbcType=VARCHAR},
+      cmd_id = #{cmdId,jdbcType=INTEGER},
+      oi_name = #{oiName,jdbcType=VARCHAR},
+      oi_image = #{oiImage,jdbcType=VARCHAR},
+      oi_price = #{oiPrice,jdbcType=DECIMAL},
+      oi_num = #{oiNum,jdbcType=INTEGER},
+      oi_content = #{oiContent,jdbcType=VARCHAR},
+      spf_id = #{spfId,jdbcType=INTEGER},
+      oi_support = #{oiSupport,jdbcType=INTEGER}
+    where oi_id = #{oiId,jdbcType=INTEGER}
+  </update>
+</mapper>

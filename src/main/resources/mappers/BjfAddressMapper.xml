@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjf.mapper.BjfAddressMapper">
+  <resultMap id="BaseResultMap" type="com.bjf.pojo.BjfAddress">
+    <id column="ad_id" jdbcType="INTEGER" property="adId" />
+    <result column="ad_address" jdbcType="VARCHAR" property="adAddress" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="ad_user" jdbcType="VARCHAR" property="adUser" />
+    <result column="ad_phone" jdbcType="VARCHAR" property="adPhone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ad_id, ad_address, u_id, ad_user, ad_phone
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bjf_address
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bjf_address
+    where u_id = #{uId,jdbcType=INTEGER}
+  </select>
+    <select id="selectAddressList" resultMap="BaseResultMap">
+    SELECT
+        *
+    FROM
+        bjf_address
+    WHERE
+        u_id=#{uId}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bjf_address
+    where ad_id = #{adId,jdbcType=INTEGER} and u_id=#{uId}
+  </delete>
+  <insert id="insert" keyColumn="ad_id" keyProperty="adId" parameterType="com.bjf.pojo.BjfAddress" useGeneratedKeys="true">
+    insert into bjf_address (ad_address, u_id, ad_user, 
+      ad_phone)
+    values (#{adAddress,jdbcType=VARCHAR}, #{uId,jdbcType=INTEGER}, #{adUser,jdbcType= VARCHAR},
+      #{adPhone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="ad_id" keyProperty="adId" parameterType="com.bjf.pojo.BjfAddress" useGeneratedKeys="true">
+    insert into bjf_address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adAddress != null">
+        ad_address,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="adUser != null">
+        ad_user,
+      </if>
+      <if test="adPhone != null">
+        ad_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adAddress != null">
+        #{adAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="adUser != null">
+        #{adUser,jdbcType=VARCHAR},
+      </if>
+      <if test="adPhone != null">
+        #{adPhone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bjf.pojo.BjfAddress">
+    update bjf_address
+    <set>
+      <if test="adAddress != null">
+        ad_address = #{adAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="adUser != null">
+        ad_user = #{adUser,jdbcType=VARCHAR},
+      </if>
+      <if test="adPhone != null">
+        ad_phone = #{adPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bjf.pojo.BjfAddress">
+    update bjf_address
+    set ad_address = #{adAddress,jdbcType=VARCHAR},
+      u_id = #{uId,jdbcType=INTEGER},
+      ad_user = #{adUser,jdbcType=VARCHAR},
+      ad_phone = #{adPhone,jdbcType=VARCHAR}
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </update>
+
+<!-- 删除地址-->
+  <delete id="deleteUserAddress" parameterType="Integer" >
+    delete
+    from bjf_address
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </delete>
+</mapper>

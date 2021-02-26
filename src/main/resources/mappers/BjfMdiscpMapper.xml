@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjf.mapper.BjfMdiscpMapper">
+  <resultMap id="BaseResultMap" type="com.bjf.pojo.BjfMdiscp">
+    <id column="mdp_id" jdbcType="INTEGER" property="mdpId" />
+    <result column="mdp_name" jdbcType="VARCHAR" property="mdpName" />
+    <result column="mdp_value" jdbcType="INTEGER" property="mdpValue" />
+    <result column="mdp_low_value" jdbcType="INTEGER" property="mdpLowValue" />
+    <result column="mdp_startime" jdbcType="DATE" property="mdpStartime" />
+    <result column="mdp_endtime" jdbcType="DATE" property="mdpEndtime" />
+    <result column="mdp_type" jdbcType="INTEGER" property="mdpType" />
+    <result column="mdp_num" jdbcType="INTEGER" property="mdpNum" />
+    <result column="mdp_switch" jdbcType="INTEGER" property="mdpSwitch" />
+    <result column="time" jdbcType="INTEGER" property="time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mdp_id, mdp_name, mdp_value, mdp_low_value, mdp_startime, mdp_endtime, mdp_type, 
+    mdp_num, mdp_switch
+  </sql>
+  <!--获取所有可以领取的优惠券-->
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from (select * from bjf_mdiscp where mdp_type = 0 or mdp_type = 1) a WHERE a.mdp_switch = 1
+  </select>
+
+  <!--获取单张优惠券-->
+  <select id="selectOne" resultMap="BaseResultMap">
+    select * from bjf_mdiscp where mdp_id = #{id}
+  </select>
+
+  <update id="updateNum" parameterType="integer">
+    update
+        bjf_mdiscp
+    set
+        bjf_mdiscp.mdp_num = bjf_mdiscp.mdp_num -1
+    where
+        bjf_mdiscp.mdp_id = #{mdpId}
+  </update>
+
+</mapper>

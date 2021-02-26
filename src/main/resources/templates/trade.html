@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>订单详情</title>
+
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+	<script src="/js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+	
+	<link rel="stylesheet" type="text/css" href="/css/trade.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/touwei.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/headEnd.css"/>
+	
+	<script src="/js/headEnd.js"></script>
+	<script src="/js/trade.js" type="text/javascript" charset="utf-8"></script>
+	
+	<!-- 获取坐标 -->
+	<script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=1uGSONnl0vOaDWKxqUQXPfiihyjVyXnA"></script>
+	
+
+</head>
+
+<body>
+	
+	<!--    头部导航条-->
+	<div class="header-box">
+		<div class="clearfix top">
+			<div class="col-md-12" style="padding: 0;">
+				<span class="leftText">欢迎你！
+					<a href="Login.html" class="go_login">去登录</a>
+					<a class="exit_login">退出</a>
+				</span>
+				<span class="rightText">
+					<a href="Index.html">首页</a>|
+					<a id="order">我的订单</a>|
+					<a id="mycart">我的购物车</a>|
+					<a id="person">个人中心</a>
+				</span>
+			</div>
+			<div class="search">
+				<img src="/images/logo.png">
+			</div>
+		</div>
+	</div>
+	
+	<div class="container">
+		<!-- 地址选择 -->
+		<div id="address-selection">
+			<div>
+				<h4>选择收货地址</h4>
+			</div>
+			<div class="address-boxs">
+				<!-- 默认地址框 -->
+				<div id="defaultAd-box" class="address-box"></div>
+				<!-- 地址 -->
+			</div>
+			<button type="button" data-toggle="modal" data-target="#addAddress-Modal" id="addbtn">添加新地址</button>
+		</div>
+		
+		<!-- 订单主体 -->
+		<div id="mian-order">
+			<div id="order-box">
+				<table id="order-table">
+					<thead>
+						<tr>
+							<th class="zy-item">商品</th>
+							<th class="zy-itemAttributes">商品属性</th>
+							<th class="zy-price">单价（元）</th>
+							<th class="zy-amount">数量</th>
+							<th class="zy-sum">小计</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+						<!-- 订单商品 -->
+
+					</tbody>
+				</table>
+			</div>
+			<div id="messageleaving-box">
+				<div>
+					给卖家留言：
+				</div>
+				<textarea id="handledMsg" maxlength="200" cols="70" rows="5" class="textarea-style"
+				          placeholder="选填，请先和商家协商一致" onkeyup="setLength(this,200,'wordsLength');"></textarea>
+				<div class="wordsLength-box">
+					<span id="wordsLength">200/200</span>
+				</div>
+
+			</div>
+			
+			<div id="settle-account">
+				
+				<div class="coupon-using">
+					优惠券：
+					<div class="drop-down" >
+						<span id="coupon-selected">---请选择---</span><span class="glyphicon glyphicon-menu-down" aria-hidden="true" style="position: absolute;right: 4px;top: 2px;"></span>
+						<ul >
+							
+							<!-- 优惠券 -->
+							
+						</ul>
+					</div>
+					<div class="amount">
+						&yen;
+						<span id="coupon-amount">0.00</span>
+					</div>
+				</div>
+				
+				<div class="cumulative-scores-box">
+					<input type="checkbox" name="" id="cumulative-scores-using" value=""/>
+						使用<span id="cumulative-scores">50</span>积分<span id="scores-discount-txt" style="display: none;">抵扣<span>1</span>元</span>
+					<div class="amount">
+						&yen;
+						<span id="scores-discount">0.00</span>
+					</div>
+				</div>
+				<div class="SVIP-discount-box">
+					
+					<span id="isNotMember">加入SVIP享专属折扣</span>
+					
+					<div id="isMember">
+						SVIP 尊享折扣
+						<div class="amount">
+							&yen;
+							<span id="SVIP-discount">0.00</span>
+						</div>
+						<br>
+						<input type="checkbox" name="" id="member-delivery-using" value=""/>
+						<span></span>
+					</div>
+					
+				</div>
+				<div class="delivery-method">
+					配送方式：
+					<span>普通配送</span>
+					<div class="amount">
+						&yen;
+						<span id="delivery-fee">0.00</span>
+					</div>
+				</div>
+				<div class="totalPrice-box">
+					合计（含运费）：
+					<div class="amount">
+						&yen;
+						<span id="totalPrice">
+							17676.00
+						</span>
+					</div>
+				</div>
+				<div class="summation-box">
+					<div class="price-box">
+						实付款:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<span>
+							&yen;<span id="sum-amount">17676.00</span>
+						</span>
+					</div>
+					
+					<div class="sum-addtrss">
+						<span>
+							<!-- 浙江省宁波市xxx区xxx镇xxx号 -->
+						</span>
+						<br>
+						<span>
+							<!-- 收货人：xxx  12421455455 -->
+						</span>
+					</div>
+				</div>
+				<div class="button-box">
+					
+					<button type="button" id="submit-order" style="background-color: #009fe6;color: #ffffff;" value="1">提交订单</button>
+					<button type="button" id="back-to-cart"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>返回购物车</button>
+					
+				</div>
+				
+				<!-- 清除浮动 -->
+				<div style="clear: both; margin-bottom: 30px;">
+					
+				</div>
+			</div>
+			
+		</div>
+		
+		
+	</div>
+
+	<!-- 浮动提示框 -->
+	<div id="Floating-frame">
+		请添加地址！！
+	</div>
+
+	<div id="loading">
+		<!-- <img src="/images/timg.gif" > -->
+		
+		<div class="wrap">
+			<!-- <p>loadingA</p> -->
+			<div class="k-line" style="height: 80px;opacity: 0;"></div>
+			<div class="k-line k-linA-1"></div>
+			<div class="k-line k-linA-2"></div>
+			<div class="k-line k-linA-3"></div>
+			<div class="k-line k-linA-4"></div>
+			<div class="k-line k-linA-5"></div>
+		</div>
+	</div>
+	
+
+	<!-- 尾部 -->
+	<div class="bottem-nav-box">
+	  <div class="row clearfix bottem">
+	<!--        正品保障+购物指南-->
+	        <div class="col-md-12 column">
+	<!--            图标+第一块文字-->
+	            <div class="bottem-text text1">
+	                <img src="/images/icon.jpg">
+	                <span>正品保障，提供发票</span><br><br>
+	                <br><span class="bottem-text-title">购物指南</span>
+	                <div class="bottem-text-content">
+	                    <span>购物流程</span>
+	                    <br><span>会员介绍</span>
+	                    <br><span>生活旅行团购</span>
+	                    <br><span>常见问题</span>
+	                    <br><span>购物指南</span>
+	                </div>
+	            </div>
+	<!--            图标+第二块文字-->
+	            <div class="bottem-text text1">
+	                <img src="/images/icon.jpg">
+	                <span>正品保障，提供发票</span><br><br>
+	                <br><span class="bottem-text-title">购物指南</span>
+	                <div class="bottem-text-content">
+	                <span>购物流程</span>
+	                <br><span>会员介绍</span>
+	                <br><span>生活旅行团购</span>
+	                <br><span>常见问题</span>
+	                <br><span>购物指南</span>
+	                </div>
+	            </div>
+	<!--            图标+第三块文字-->
+	            <div class="bottem-text text1">
+	                <img src="/images/icon.jpg">
+	                <span>正品保障，提供发票</span><br><br>
+	                <br><span class="bottem-text-title">购物指南</span>
+	                <div class="bottem-text-content">
+	                    <span>购物流程</span>
+	                    <br><span>会员介绍</span>
+	                    <br><span>生活旅行团购</span>
+	                    <br><span>常见问题</span>
+	                    <br><span>购物指南</span>
+	                </div>
+	            </div>
+	<!--            图标+第四块文字-->
+	            <div class="bottem-text1 text1">
+	                <img src="/images/icon.jpg">
+	                <span>正品保障，提供发票</span><br><br>
+	                <br><span class="bottem-text-title">购物指南</span>
+	                <div class="bottem-text-content">
+	                    <span>购物流程</span>
+	                    <br><span>会员介绍</span>
+	                    <br><span>生活旅行团购</span>
+	                    <br><span>常见问题</span>
+	                    <br><span>购物指南</span>
+	                </div>
+	            </div>
+	            <div class="erweima"></div>
+	
+	</div>
+	<!--        底部介绍-->
+	        <div class="col-md-12 column footer">
+	            <ul>
+	                <span>关于我们</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+	                <span>联系我们</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+	                <span>联系客服</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+	                <span>营销中心</span>
+	            </ul>
+	            <ul>
+	                <span>地址：浙江省宁波市鄞州区柏庭养老管理集团主楼5楼 邮编：31500 电话00-000000000 邮箱：bangjifans.com</span>
+	
+	            </ul>
+	            <ul>
+	                <span>京ICP备08001421号京公网安备110108007702</span>
+	
+	            </ul>
+	        </div>
+	    </div>
+	</div>
+	
+	<!-- 添加/修改地址 模态框 -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="addAddress-Modal">
+	  <div class="modal-dialog" role="document" style="width: 670px;">
+	    <div class="modal-content" >
+			
+			<!-- 头部 -->
+	      <div class="modal-header" style="padding: 0;height: 70px;">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin: auto 24px;line-height: 70px;font-size: 40px;"><span aria-hidden="true">&times;</span></button>
+	        <span class="modal-title" style="line-height: 70px;margin: auto 42px ;width: 102px;height: 33px;font-size: 24px;">创建新地址</span>
+	      </div>
+		  
+		  <!-- 主题 -->
+	      <div class="modal-body address_lable">
+	        
+			<div id="allmap"></div>
+			<div><label>地址：</label><input type="text" placeholder="请输入" class="dress"></input></div>
+			<div><label>收货人：</label><input type="text" placeholder="请输入" class="person"></div>
+			<div><label>电话：</label><input type="text" placeholder="请输入" class="phoneNumber" onkeyup="value=value.replace(/[^\d]{2,5}/g,'')" maxlength=11></div>
+			
+	      </div>
+		
+		  <div class="modal-footer">
+		    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+		    <button type="button" class="btn btn-primary" id="corretDress">添加</button>
+		  </div>
+		
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- <div class="modal fade" tabindex="-1" role="dialog" id="addAddress-Modal">
+	  <div class="modal-dialog" role="document" style="width: 670px;margin-top: 200px;">
+	    <div class="modal-content" >
+			
+			<!-- 头部 
+	      <div class="modal-header" style="padding: 0;height: 70px;">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin: auto 24px;line-height: 70px;font-size: 40px;"><span aria-hidden="true">&times;</span></button>
+	        <span class="modal-title" style="line-height: 70px;margin: auto 42px ;width: 102px;height: 33px;font-size: 24px;">创建新地址</span>
+	      </div>
+		  
+		  <!-- 主题 
+	      <div class="modal-body" style="height: 320px; margin-top: 10px;">
+	        
+			<div>
+				<span>详细地址：</span><textarea class="detailAdress" id="ad-detailAdress" rows="" cols=""></textarea>
+				<!-- <input type="text" name="detailAdress" id="detailAdress" value=""/> 
+			</div>
+			<div style="text-indent: -15px;">
+				<span>收货人名字：</span><input type="text" class="consigneeNmae" id="ad-consigneeNmae" value="" />
+			</div>
+			<div>
+				<span>手机号码：</span><input type="text" class="mobilePhone" id="ad-mobilePhone" value="" />
+			</div>
+			<div style="text-indent: -40px;">
+				<input type="checkbox" name="setDefault" id="setDefault " value="" checked ='checked'/>
+				<span>设置为默认收货地址</span>
+			</div>
+			<div style="text-indent: -140px;">
+				<button type="button" class="save-button" id="ad-save-button">保存</button>
+			</div>
+			
+	      </div>
+		
+	    </div>
+	  </div>
+	</div> -->
+
+</body>
+</html>

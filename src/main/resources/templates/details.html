@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单详情</title>
+    <style type="text/css">
+        html,body {margin: 0;padding: 0;height: 100%;width: 100%;}
+        a {text-decoration: none;  color:inherit;}
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin: 0;padding: 0;}
+        table {border-collapse: collapse;border-spacing: 0;}
+        fieldset,img {border: 0;}
+        address,caption,cite,code,dfn,em,strong,th,var {font-style: normal;font-weight: normal;}
+        ol,ul {list-style: none;}
+        caption,th {text-align: left;}
+        h1,h2,h3,h4,h5,h6 {font-size: 100%;font-weight: normal;}
+        q:before,q:after {content: '';}
+        abbr,acronym {border: 0;}
+        body{
+            font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+    </style>
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- 头尾样式 -->
+    <link rel="stylesheet" href="/css/headEnd.css">
+    <!-- 主体css文件 -->
+    <link rel="stylesheet" href="/css/details.css">
+     <!-- layer最新版本 CSS文件 -->
+    <script src="/js/jquery-1.12.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!--弹出框插件-->
+    <script src="/layer/layer.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+    <!-- 头尾js -->
+    <script src="/js/headEnd.js"></script>
+    <script src="/js/details.js"></script>
+</head>
+<body>
+    <div class=" box">
+        <!--    头部导航条-->
+        <div class="header-box">
+            <div class="clearfix top">
+                <div class="col-md-12">
+                    <span class="leftText">欢迎你！
+                      <a href="Login.html" class="go_login">去登录</a>
+                      <a class="exit_login">退出</a>
+                    </span>
+                    <span class="rightText" style="width: 387px;">
+                      <a href="Index.html">首页</a>|
+                      <a id="order">我的订单</a>|
+                      <a id="mycart">我的购物车</a>|
+                      <a id="person">个人中心</a>
+                      <button type="button" class="btn btn-danger" id="couponDialog">领取优惠券</button>
+                    </span>
+                </div>
+                <div class="search">
+                    <img src="/images/logo.png">
+                    <!-- <span><input type="text"><button>搜索</button></span> -->
+                </div>
+            </div>
+        </div>
+        <!-- 订单详情 -->
+        <div class="details-box">
+            <div class="details-title">订单详情</div>
+            <div class="details-list-box">
+                <div class="details-list">
+                    <div class="details-text">
+                        <div class="details-text-list1">1</div>
+                        <div class="details-text-list2">
+                            <div>提交订单</div>
+                            <div class="details-time orderTime"></div>
+                        </div>
+                    </div>
+                    <div class="details-border"></div>
+                </div>
+                <div class="details-list">
+                    <div class="details-text">
+                        <div class="details-text-list1">2</div>
+                        <div class="details-text-list2">
+                            <div>支付成功</div>
+                            <div class="details-time payTime"></div>
+                        </div>
+                    </div>
+                    <div class="details-border"></div>
+                </div>
+
+                <!-- <div class="details-list">
+                    <div class="details-text">
+                        <div class="details-text-list1">3</div>
+                        <div class="details-text-list2">
+                            <div>已发货</div>
+                            <div class="details-time">2020-7-20 09: 20: 30</div>
+                        </div>
+                    </div>
+                    <div class="details-border"></div>
+                </div>
+                <div class="details-list">
+                    <div class="details-text">
+                        <div class="details-text-list1">4</div>
+                        <div class="details-text-list2">
+                            <div>代签收</div>
+                            <div class="details-time"></div>
+                        </div>
+                    </div>
+                    <div class="details-border"></div>
+                </div> -->
+                <div class="details-list">
+                    <div class="details-text">
+                        <div class="details-text-list1">5</div>
+                        <div class="details-text-list2">
+                            <div>已完成</div>
+                            <div class="details-time accomplishTime"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="order-details-box">
+                <div class="order-current-box">
+                    <div class="order-current-list">
+                        <span>当前订单状态:</span>
+                        <span class="state"></span>
+                    </div>
+                    <div class="order-current-list courier"></div>
+                    <!-- <div>
+                        <span>还剩:</span>
+                        <span>6天12小时</span>
+                        <span>自动确认收货</span>
+                    </div>  -->
+                </div>
+                <div class="order-message">订单信息</div>
+                <hr class="order-message-border"/>
+                <div class="order-message-list">
+                    <span>收货地址:</span>
+                    <span class="site"></span>
+                </div>
+                <div class="order-message-list">
+                    <span>订单单号:</span>
+                    <span class="number"></span>
+                </div>
+                <div class="order-message-list">
+                    <span>下单时间:</span>
+                    <span class="order-time"></span>
+                </div>
+                <div class="order-message-list">
+                    <span>支付时间:</span>
+                    <span class="pay-time"></span>
+                </div>
+                <div class="order-message-list">
+                    <span>支付方式:</span>
+                    <span class="pay-way"></span>
+                </div>
+                <!-- <div class="order-message-list">
+                    <span>发货时间:</span>
+                    <span>2020-7-20 09: 20: 30</span>
+                </div> -->
+            </div>
+            <div class="indent-right-box">
+                <div class="indent-title-box same-flex">
+                    <div class="commodity-list1">商品</div>
+                    <div class="same1">单价(元)</div>
+                    <div class="same1">数量</div>
+                    <div class="same1">商品操作</div>
+                    <div class="same1">实付款</div>
+                    <div class="same1">交易状态</div>
+                    <div class="same1">交易操作</div>
+                </div>
+                <div id="content"></div>
+            </div>
+        </div>
+
+        <!--    尾部导航条-->
+        <div class="bottem-nav-box">
+          <div class="row clearfix bottem">
+        <!--        正品保障+购物指南-->
+                <div class="col-md-12 column">
+        <!--            图标+第一块文字-->
+                    <div class="bottem-text text1">
+                        <img src="../Img/WechatIMG90.png">
+                        <span>正品保障，提供发票</span><br><br>
+                        <br><span class="bottem-text-title">购物指南</span>
+                        <div class="bottem-text-content">
+                            <span>购物流程</span>
+                            <br><span>会员介绍</span>
+                            <br><span>生活旅行团购</span>
+                            <br><span>常见问题</span>
+                            <br><span>购物指南</span>
+                        </div>
+                    </div>
+        <!--            图标+第二块文字-->
+                    <div class="bottem-text text1">
+                        <img src="../Img/WechatIMG90.png">
+                        <span>正品保障，提供发票</span><br><br>
+                        <br><span class="bottem-text-title">购物指南</span>
+                        <div class="bottem-text-content">
+                        <span>购物流程</span>
+                        <br><span>会员介绍</span>
+                        <br><span>生活旅行团购</span>
+                        <br><span>常见问题</span>
+                        <br><span>购物指南</span>
+                        </div>
+                    </div>
+        <!--            图标+第三块文字-->
+                    <div class="bottem-text text1">
+                        <img src="../Img/WechatIMG90.png">
+                        <span>正品保障，提供发票</span><br><br>
+                        <br><span class="bottem-text-title">购物指南</span>
+                        <div class="bottem-text-content">
+                            <span>购物流程</span>
+                            <br><span>会员介绍</span>
+                            <br><span>生活旅行团购</span>
+                            <br><span>常见问题</span>
+                            <br><span>购物指南</span>
+                        </div>
+                    </div>
+        <!--            图标+第四块文字-->
+                    <div class="bottem-text1 text1">
+                        <img src="../Img/WechatIMG90.png">
+                        <span>正品保障，提供发票</span><br><br>
+                        <br><span class="bottem-text-title">购物指南</span>
+                        <div class="bottem-text-content">
+                            <span>购物流程</span>
+                            <br><span>会员介绍</span>
+                            <br><span>生活旅行团购</span>
+                            <br><span>常见问题</span>
+                            <br><span>购物指南</span>
+                        </div>
+                    </div>
+                    <div class="erweima"></div>
+
+        </div>
+        <!--        底部介绍-->
+                <div class="col-md-12 column footer">
+                    <ul>
+                        <span>关于我们</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+                        <span>联系我们</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+                        <span>联系客服</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+                        <span>营销中心</span>
+                    </ul>
+                    <ul>
+                        <span>地址：浙江省宁波市鄞州区柏庭养老管理集团主楼5楼 邮编：31500 电话00-000000000 邮箱：bangjifans.com</span>
+
+                    </ul>
+                    <ul>
+                        <span>京ICP备08001421号京公网安备110108007702</span>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+</body>
+</html>

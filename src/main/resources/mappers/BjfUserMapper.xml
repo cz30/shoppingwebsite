@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjf.mapper.BjfUserMapper">
+
+    <resultMap id="BaseResultMap" type="com.bjf.pojo.BjfUser">
+        <id column="u_id" jdbcType="INTEGER" property="uId" />
+        <result column="u_username" jdbcType="VARCHAR" property="uUsername" />
+        <result column="u_password" jdbcType="VARCHAR" property="uPassword" />
+        <result column="u_pwd" jdbcType="VARCHAR" property="uPwd" />
+        <result column="perms" jdbcType="VARCHAR" property="perms" />
+        <result column="u_email" jdbcType="VARCHAR" property="uEmail" />
+        <result column="u_phone_number" jdbcType="VARCHAR" property="uPhoneNumber" />
+        <result column="u_head_sculpture" jdbcType="VARCHAR" property="uHeadSculpture" />
+        <result column="u_birth" jdbcType="DATE" property="uBirth" />
+        <result column="u_integral" jdbcType="INTEGER" property="uIntegral" />
+        <result column="od_id" jdbcType="VARCHAR" property="odId" />
+        <result column="u_account" jdbcType="VARCHAR" property="uAccount" />
+        <result column="u_sex" jdbcType="INTEGER" property="uSex" />
+        <result column="ad_id" jdbcType="INTEGER" property="adId" />
+        <result column="u_member" jdbcType="INTEGER" property="uMember" />
+    </resultMap>
+
+    <resultMap id="BaseResultMap2" type="com.bjf.pojo.vo.BjfUserVo">
+        <id column="u_id" jdbcType="INTEGER" property="uId" />
+        <result column="u_username" jdbcType="VARCHAR" property="uUsername" />
+        <result column="u_password" jdbcType="VARCHAR" property="uPassword" />
+        <result column="u_pwd" jdbcType="VARCHAR" property="uPwd" />
+        <result column="perms" jdbcType="VARCHAR" property="perms" />
+        <result column="u_email" jdbcType="VARCHAR" property="uEmail" />
+        <result column="u_phone_number" jdbcType="VARCHAR" property="uPhoneNumber" />
+        <result column="u_head_sculpture" jdbcType="VARCHAR" property="uHeadSculpture" />
+        <result column="u_birth" jdbcType="DATE" property="uBirth" />
+        <result column="cart_id" jdbcType="INTEGER" property="cartId" />
+        <result column="u_integral" jdbcType="INTEGER" property="uIntegral" />
+        <result column=" u_sum" jdbcType="VARCHAR" property="uSum" />
+        <result column="od_id" jdbcType="VARCHAR" property="odId" />
+        <result column="u_account" jdbcType="VARCHAR" property="uAccount" />
+        <result column="u_sex" jdbcType="INTEGER" property="uSex" />
+        <result column="ad_id" jdbcType="INTEGER" property="adId" />
+    </resultMap>
+    <sql id="Base_Column_List">
+      u_id, u_username, u_password, u_pwd, perms, u_email, u_phone_number, u_head_sculpture,
+      u_birth, u_integral, u_member, od_id, u_account, u_sex, ad_id, u_member
+    </sql>
+    <delete id="deleteByPrimaryKey">
+    delete from bjf_user
+    where u_id = #{uId,jdbcType=INTEGER}
+    </delete>
+    <!-- <sql id="Base_Column_List">
+     u_id, u_username, u_password, u_pwd, perms, u_email, u_phone_number, u_head_sculpture,
+     u_birth, cart_id, u_integral, u_leavel, ` u_sum`, od_id, u_account, u_sex, ad_id
+   </sql>-->
+<!--根据用户名查用户-->
+  <select id="queryBjfUserByName" resultMap="BaseResultMap">
+        select * from bjf_user where u_username = #{username}
+  </select>
+<!--添加一条用户信息-->
+  <insert id="insertBjfUser" parameterType="com.bjf.pojo.BjfUser">
+        insert into bjf_user(u_username,u_password,u_pwd,perms,u_email,u_phone_number,u_sex,u_member) values(#{uUsername},#{uPassword},#{uPwd},#{perms},#{uEmail},#{uPhoneNumber},#{uSex},#{uMember});
+    </insert>
+    <insert id="insertSelective">
+        insert into bjf_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uUsername != null">
+                u_username,
+            </if>
+            <if test="uPassword != null">
+                u_password,
+            </if>
+            <if test="uPwd != null">
+                u_pwd,
+            </if>
+            <if test="perms != null">
+                perms,
+            </if>
+            <if test="uEmail != null">
+                u_email,
+            </if>
+            <if test="uPhoneNumber != null">
+                u_phone_number,
+            </if>
+            <if test="uHeadSculpture != null">
+                u_head_sculpture,
+            </if>
+            <if test="uBirth != null">
+                u_birth,
+            </if>
+            <if test="uIntegral != null">
+                u_integral,
+            </if>
+            <if test="uMember != null">
+                u_member,
+            </if>
+            <if test="odId != null">
+                od_id,
+            </if>
+            <if test="uAccount != null">
+                u_account,
+            </if>
+            <if test="uSex != null">
+                u_sex,
+            </if>
+            <if test="adId != null">
+                ad_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uUsername != null">
+                #{uUsername,jdbcType=VARCHAR},
+            </if>
+            <if test="uPassword != null">
+                #{uPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="uPwd != null">
+                #{uPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="perms != null">
+                #{perms,jdbcType=VARCHAR},
+            </if>
+            <if test="uEmail != null">
+                #{uEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="uPhoneNumber != null">
+                #{uPhoneNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="uHeadSculpture != null">
+                #{uHeadSculpture,jdbcType=VARCHAR},
+            </if>
+            <if test="uBirth != null">
+                #{uBirth,jdbcType=DATE},
+            </if>
+            <if test="uIntegral != null">
+                #{uIntegral,jdbcType=INTEGER},
+            </if>
+            <if test="uMember != null">
+                #{uMember,jdbcType=INTEGER},
+            </if>
+            <if test="odId != null">
+                #{odId,jdbcType=VARCHAR},
+            </if>
+            <if test="uAccount != null">
+                #{uAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="uSex != null">
+                #{uSex,jdbcType=VARCHAR},
+            </if>
+            <if test="adId != null">
+                #{adId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <!--验证用户名-->
+  <select id="queryBjfUserName" parameterType="string" resultType="String">
+        select u_username from bjf_user where u_username = #{uusername}
+    </select>
+<!--验证手机号-->
+  <select id="queryUserPhoneNumber" parameterType="string" resultType="string">
+        select u_phone_number from bjf_user where  u_phone_number = #{phonenumber}
+    </select>
+<!--验证邮箱号-->
+  <select id="queryUserEmail" parameterType="string" resultType="String">
+        select u_email from bjf_user where u_email = #{uemail}
+    </select>
+    <select id="findByUId" resultMap="BaseResultMap">
+        select
+            *
+        from
+            bjf_user
+        where
+            u_id=#{uId}
+    </select>
+    <!--通过手机号登录-->
+    <select id="queryBjfUserByPhoneNumber" parameterType="string" resultMap="BaseResultMap">
+        select * from bjf_user where u_phone_number = #{phoneNumber}
+    </select>
+    <!--通过邮箱号登录-->
+    <select id="queryBjfUserByEmail" parameterType="string" resultMap="BaseResultMap">
+        select * from bjf_user where u_email = #{email}
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap2">
+        select * from bjf_user where u_id = #{uId}
+    </select>
+
+
+    <select id="queryBjfUserHeadImgByPrimaryKey" parameterType="java.lang.Integer"  resultType="string">
+        select u_head_sculpture from bjf_user where u_id = #{uId}
+    </select>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bjf.pojo.BjfUser">
+        update bjf_user
+        <set>
+            <if test="uUsername != null">
+                u_username = #{uUsername,jdbcType=VARCHAR},
+            </if>
+            <if test="uPassword != null">
+                u_password = #{uPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="uPwd != null">
+                u_pwd = #{uPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="perms != null">
+                perms = #{perms,jdbcType=VARCHAR},
+            </if>
+            <if test="uEmail != null">
+                u_email = #{uEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="uPhoneNumber != null">
+                u_phone_number = #{uPhoneNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="uHeadSculpture != null">
+                u_head_sculpture = #{uHeadSculpture,jdbcType=VARCHAR},
+            </if>
+            <if test="uBirth != null">
+                u_birth = #{uBirth,jdbcType=DATE},
+            </if>
+
+            <if test="uIntegral != null">
+                u_integral = #{uIntegral,jdbcType=INTEGER},
+            </if>
+
+            <if test="odId != null">
+                od_id = #{odId,jdbcType=VARCHAR},
+            </if>
+            <if test="uAccount != null">
+                u_account = #{uAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="uSex != null">
+                u_sex = #{uSex,jdbcType=INTEGER},
+            </if>
+            <if test="adId != null">
+                ad_id = #{adId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where u_id = #{uId,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateMailByPrimaryKey" parameterType="com.bjf.pojo.BjfUser">
+        update bjf_user set u_email = #{mail}
+        where u_id = #{uId}
+    </update>
+
+
+    <update id="updateNumberByPrimaryKey" parameterType="com.bjf.pojo.BjfUserPhoneOrNumberUp">
+        update bjf_user set  u_phone_number = #{number}
+        where u_id = #{uId}
+    </update>
+
+    <update id="updateIntegral">
+        update bjf_user set u_integral = u_integral+#{integral} where u_id = #{uId}
+    </update>
+
+    <update id="updatePassword">
+        update
+            bjf_user
+        set
+            u_password = #{param1},
+            u_pwd = #{param2}
+        where
+            u_id = #{param3}
+    </update>
+
+    <!-- 更改用户的会员状态 -->
+    <update id="updateByuIdKey" >
+      update bjf_user
+      set
+        u_member = #{uMember,jdbcType=INTEGER}
+
+      where u_id = #{uId,jdbcType=INTEGER}
+    </update>
+    <update id="reduceIntegral">
+    UPDATE
+        bjf_user
+    SET
+        u_integral=0
+    WHERE
+        u_id=#{uId}
+    </update>
+    <!-- 正常的selectall，查的是实体类 -->
+    <select id="selectByPrimaryKey1" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from bjf_user
+        where u_id = #{uId,jdbcType=INTEGER}
+    </select>
+    <select id="selectUserPasdByPrimaryKey" resultType="java.lang.String">
+    select
+        u_password
+    from
+        bjf_user
+    where
+        u_id=#{uId}
+    </select>
+
+
+    <!--    设置默认地址  -->
+   <!-- <update id="setUserDefaultAddress">
+        update
+            bjf_user
+        SET
+            ad_id=#{adId,jdbcType=INTEGER}
+        WHERE
+            u_id=#{uId,jdbcType=INTEGER}
+    </update>-->
+    <update id="setUserDefaultAddress" parameterType="integer">
+        update
+            bjf_user
+        set
+            ad_id = #{adId}
+        where
+            u_id = #{uId}
+    </update>
+
+
+    <!--     删除默认地址设置-->
+    <!--    设置默认地址  -->
+
+    <update id="clearUserDefaultAddress" parameterType="java.lang.Integer" >
+        UPDATE
+            bjf_user
+        SET
+            ad_id=null
+        WHERE
+            u_id=#{uId,jdbcType=INTEGER}
+    </update>
+</mapper>

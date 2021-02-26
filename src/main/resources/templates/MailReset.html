@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>忘记密码</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <!-- 新 Bootstrap 核心 CSS 文件 -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+  <script type="text/javascript" src="/js/jquery-3.5.1.js"></script>
+  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+  <script src="/js/bootstrap.js"></script>
+  <!--    MD5加密js文件-->
+  <script src="/js/m.js"></script>
+  <link rel="stylesheet" href="/css/mail.css">
+  <script src="/js/mail.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+  <!--    商标-->
+  <img class="img1" src="/images/logo.png" alt="" style="height:140px;width:160px;"/>
+  <!--    注册-->
+  <div class="row clearfix content">
+    <div id="another">
+      <a href="PhoneReset.html" style="pointer-events:auto;" >用手机重置密码</a>
+    </div>
+    <!--        注册表单-->
+    <div id="border">
+      <div class="col-md-4 column register">
+        <div class="title">
+          <span>忘记密码</span>
+          <a href="Login.html">去登录</a>
+        </div>
+        <form role="form" id="fm" name="fname">
+          <div class="form-group">
+            <label for="exampleMail">邮箱</label>
+            <input type="text" class="form-control" id="exampleMail" placeholder="请输入邮箱" name="number"/>
+            <span id="mailError" class="redTip"></span>
+          </div>
+          <div class="form-group checkGroup">
+            <label for="exampleInputCheck">邮箱验证码</label>
+            <div class="innerBox">
+              <input type="text" class="form-control" id="exampleInputCheck" placeholder="请输入邮箱验证码" name="code"/>
+              <button class="sendButton" id="sendCheck">发送到邮箱</button>
+              <button class="sendButton" id="J_resetCode" style="display:none;" disabled="disabled">
+                <span id="J_second">60</span>
+                秒后重发
+              </button>
+            </div>
+          </div>
+          <span id="checkError" class="redTip"></span>
+          <div class="form-group">
+            <label for="exampleInputPassword">登录密码</label>
+            <input type="password" class="form-control" id="exampleInputPassword" placeholder="请输入密码" name="password"/>
+            <span id="passwordError" class="redTip"></span>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">确认密码</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="再次输入密码"
+                   name="password2"/>
+            <span id="passwordError1" class="redTip"></span>
+          </div>
+          <input type="hidden" name="pwd" id="pwd">
+          <button type="button" class="btn btn-default" id="check">确定</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <!--    尾部-->
+  <div class="row clearfix footer">
+    <div class="col-md-12 column">
+      <ul>
+        <span>关于我们</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+        <span>联系我们</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+        <span>联系客服</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+        <span>营销中心</span>
+      </ul>
+      <ul>
+        <span>地址：浙江省宁波市鄞州区柏庭养老管理集团主楼5楼 邮编：31500 电话00-000000000 邮箱：bangjifans.com</span>
+      </ul>
+      <ul>
+        <span>京ICP备08001421号京公网安备110108007702</span>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+

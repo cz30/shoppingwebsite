@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjf.mapper.BjfCategoryMapper">
+  <resultMap id="BaseTreeResultMap" type="com.bjf.pojo.BjfCategory">
+    <id column="cg_id" jdbcType="INTEGER" property="cgId" />
+    <result column="cg__name" jdbcType="VARCHAR" property="cgName" />
+    <collection column="cg_id" property="next" javaType="java.util.ArrayList"
+                ofType="com.bjf.pojo.BjfCategory" select="getNextBjfCategoryTree" />
+  </resultMap>
+
+  <resultMap id="NextTreeResultMap" type="com.bjf.pojo.BjfCategory">
+    <result column="cg_id" property="cgId"/>
+    <result column="cg__name" property="cgName"/>
+    <collection column="cg_id" property="next" javaType="java.util.ArrayList"
+                ofType="com.bjf.pojo.BjfCategory" select="getNextBjfCategoryTree"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    cg_id, cg__name
+  </sql>
+
+  <select id="getNextBjfCategoryTree" resultMap="NextTreeResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from bjf_category
+    where cg_parent_id= #{cgId};
+  </select>
+
+  <select id="getBjfCategoryTree" resultMap="BaseTreeResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from bjf_category
+    where cg_parent_id =0;
+  </select>
+
+</mapper>

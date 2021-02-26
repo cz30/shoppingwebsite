@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>支付成功</title>
+		<script src="/js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			#counter {
+				width: 1200px;
+				text-align: center;
+				margin: 100px auto;
+				font-size: 24px;
+			}
+		    .changeFont {
+		        color: red;
+		        font-size: 30px;
+		    }
+			#success {
+				width: 100px;
+				height: 100px;
+				background-color: #009fe6;
+				border-radius: 100px;
+				color: #ffffff;
+				margin: 0 auto;
+				font-size: 75px;
+				cursor: default;
+			}
+		</style>
+		<link rel="stylesheet" href="/css/main.css">
+	</head>
+	<body>
+		<div id="counter">
+			<div id="success">
+				<!-- √ -->
+				✔
+			</div>
+			<p>支付成功</p>
+			<span id="spanTime"></span>
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+	window.onload = function(){
+		
+		var isV = $.cookie("isV");
+		
+	    //1.首先声明seconds
+	    var seconds = 5;
+	    //2.声明定时器
+	    var timer = null;
+	    //3.开启定时器
+	    timer = setInterval(show,1000);
+	    //开启定时器后要执行的函数
+	    function show(){
+	        if(seconds==0){
+	            clearInterval(timer);//清除定时器
+				if (isV == 1) {
+					/* 返回会员页 */
+					window.open('vipHome.html','_self');
+				} else {
+					/* 返回首页 */
+					window.open('index.html','_self');
+				}
+				console.log('结束')
+	            return;
+	        }
+	        //将不断变化的秒数显示在页面上
+	        document.getElementById('spanTime').innerHTML = '<span class="changeFont">'+seconds+'</span>' + " 秒后返回！"; 
+	        seconds--; 
+	    } 
+	};
+	</script>
+	
+</html>

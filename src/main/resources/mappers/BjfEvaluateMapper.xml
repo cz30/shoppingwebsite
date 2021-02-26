@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjf.mapper.BjfEvaluateMapper">
+  <resultMap id="BaseResultMap" type="com.bjf.pojo.BjfEvaluate">
+    <id column="e_id" jdbcType="INTEGER" property="eId" />
+    <result column="e_content" jdbcType="VARCHAR" property="eContent" />
+    <result column="e_image" jdbcType="VARCHAR" property="eImage" />
+    <result column="e_grep_status" jdbcType="INTEGER" property="eGrepStatus" />
+    <result column="cmd_id" jdbcType="INTEGER" property="cmdId" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="e_utime" jdbcType="TIMESTAMP" property="eUtime" />
+    <result column="e_mtime" jdbcType="TIMESTAMP" property="eMtime" />
+    <result column="e_mback" jdbcType="VARCHAR" property="eMback" />
+    <result column="e_uback" jdbcType="VARCHAR" property="eUback" />
+    <result column="e_uback_time" jdbcType="TIMESTAMP" property="eUbackTime" />
+    <result column="e_back_images" jdbcType="VARCHAR" property="eBackImages" />
+  </resultMap>
+  <resultMap id="SelectAllMap" type="com.bjf.pojo.vo.BjfEvaluateVo">
+    <id column="e_id" jdbcType="INTEGER" property="eId" />
+    <result column="e_content" jdbcType="VARCHAR" property="eContent" />
+    <result column="e_image" jdbcType="VARCHAR" property="eImage" />
+    <result column="e_grep_status" jdbcType="INTEGER" property="eGrepStatus" />
+    <result column="cmd_id" jdbcType="INTEGER" property="cmdId" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="e_utime" jdbcType="TIMESTAMP" property="eUtime" />
+    <result column="e_mtime" jdbcType="TIMESTAMP" property="eMtime" />
+    <result column="e_mback" jdbcType="VARCHAR" property="eMback" />
+    <result column="e_uback" jdbcType="VARCHAR" property="eUback" />
+    <result column="e_uback_time" jdbcType="TIMESTAMP" property="eUbackTime" />
+    <result column="e_back_images" jdbcType="VARCHAR" property="eBackImages" />
+    <result column="u_account" jdbcType="VARCHAR" property="uAccount" />
+    <result column="u_head_sculpture" jdbcType="VARCHAR" property="uHeadSculpture" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    e_id, e_content, e_image, e_grep_status, cmd_id, u_id, e_utime, e_mtime, e_mback, 
+    e_uback, e_uback_time, e_back_images
+  </sql>
+  <insert id="insertOrderItem">
+    insert into bjf_evaluate(u_id,cmd_id) values(#{param1},#{param2},#{param3})
+  </insert>
+
+  <!-- 插入初次评论 -->
+  <insert id="insertSelective"  parameterType="com.bjf.pojo.BjfEvaluate">
+    insert into bjf_evaluate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eId != null">
+        e_id,
+      </if>
+      <if test="eContent != null">
+        e_content,
+      </if>
+      <if test="eImage != null">
+        e_image,
+      </if>
+      <if test="eGrepStatus != null">
+        e_grep_status,
+      </if>
+      <if test="cmdId != null">
+        cmd_id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="eUtime != null">
+        e_utime,
+      </if>
+      <if test="eMtime != null">
+        e_mtime,
+      </if>
+      <if test="eMback != null">
+        e_mback,
+      </if>
+      <if test="eUback != null">
+        e_uback,
+      </if>
+      <if test="eUbackTime != null">
+        e_uback_time,
+      </if>
+      <if test="eBackImages != null">
+        e_back_images,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eId != null">
+        #{eId,jdbcType=INTEGER},
+      </if>
+      <if test="eContent != null">
+        #{eContent,jdbcType=VARCHAR},
+      </if>
+      <if test="eImage != null">
+        #{eImage,jdbcType=VARCHAR},
+      </if>
+      <if test="eGrepStatus != null">
+        #{eGrepStatus,jdbcType=INTEGER},
+      </if>
+      <if test="cmdId != null">
+        #{cmdId,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="eUtime != null">
+        #{eUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eMtime != null">
+        #{eMtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eMback != null">
+        #{eMback,jdbcType=VARCHAR},
+      </if>
+      <if test="eUback != null">
+        #{eUback,jdbcType=VARCHAR},
+      </if>
+      <if test="eUbackTime != null">
+        #{eUbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eBackImages != null">
+        #{eBackImages,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <!-- 根据商品id和订单详情主键id查询评价表 -->
+  <select id="selectInitialCommentsByCmdIdAndUId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bjf_evaluate
+    where e_id=#{eId,jdbcType=INTEGER}
+  </select>
+  <!-- 追加评价 -->
+  <update id="updateAdditionalComments" parameterType="com.bjf.pojo.BjfEvaluate">
+    update bjf_evaluate
+    <set>
+      <if test="eUback != null">
+        e_uback = #{eUback,jdbcType=VARCHAR},
+      </if>
+      <if test="eUbackTime != null">
+        e_uback_time = #{eUbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eBackImages != null">
+        e_back_images = #{eBackImages,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where e_id=#{eId,jdbcType=INTEGER};
+  </update>
+  <!-- 商品详情页展示评论 -->
+  <select id="selectEvaluateBycmdId" parameterType="java.lang.Integer" resultMap="SelectAllMap">
+    select
+    a.`e_id`,a.`e_content`,a.`e_image`,a.`e_grep_status`,a.`cmd_id`,a.`e_utime`,a.`e_mtime`,
+    a.`e_mback`,a.`e_uback`,a.`e_uback_time`,a.`e_back_images`,
+    b.`u_account`,b.`u_head_sculpture`
+    from `bjf_evaluate` a
+    join bjf_user b
+    on a.u_id=b.u_id AND a.cmd_id=#{cmdId,jdbcType=INTEGER};
+  </select>
+
+</mapper>

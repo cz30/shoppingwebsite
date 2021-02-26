@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjf.mapper.BjfMerchantMapper">
+    <resultMap id="BaseResultMap" type="com.bjf.pojo.BjfMerchant">
+        <id column="mc_id" jdbcType="INTEGER" property="mcId" />
+        <result column="mc_name" jdbcType="VARCHAR" property="mcName" />
+        <result column="mc_message" jdbcType="VARCHAR" property="mcMessage" />
+        <result column="mc_email" jdbcType="VARCHAR" property="mcEmail" />
+        <result column="mc_phone_number" jdbcType="VARCHAR" property="mcPhoneNumber" />
+        <result column="mc_id_card" jdbcType="VARCHAR" property="mcIdCard" />
+        <result column="mc_code" jdbcType="VARCHAR" property="mcCode" />
+        <result column="mc_license" jdbcType="VARCHAR" property="mcLicense" />
+        <result column="mc_username" jdbcType="VARCHAR" property="mcUsername" />
+        <result column="mc_password" jdbcType="VARCHAR" property="mcPassword" />
+        <result column="mc_pwd" jdbcType="VARCHAR" property="mcPwd" />
+        <result column="mc_perms" jdbcType="VARCHAR" property="mcPerms" />
+        <result column="mc_address" jdbcType="VARCHAR" property="mcAddress" />
+        <result column="mc_dpfee" jdbcType="DECIMAL" property="mcDpfee" />
+        <result column="mc_cmdfee" jdbcType="INTEGER" property="mcCmdfee" />
+        <result column="mc_success_time" jdbcType="INTEGER" property="mcSuccessTime" />
+    </resultMap>
+  <sql id="Base_Column_List">
+    mc_id, mc_name, mc_message, mc_email, mc_phone_number, mc_id_card, mc_code, mc_license,
+    mc_username, mc_password, mc_pwd, mc_perms, mc_address, mc_dpfee, mc_cmdfee, mc_success_time
+  </sql>
+  <select id="queryBjfMerchantByName"  resultMap="BaseResultMap">
+        select * from bjf_merchant where mc_username = #{mcName}
+    </select>
+
+  <insert id="insertBjfmer">
+        insert into bjf_merchant values(default,#{mcName},#{mcMessage},#{mcEmail},#{mcPhoneNumber},#{mcIdCard},#{mcCode},#{mcLicense},#{mcUsername},#{mcPassword},#{mcPwd},#{mcPerms},#{mcAddress})
+    </insert>
+
+    <select id="queryBjfMerchantByPhoneNumber" parameterType="string" resultMap="BaseResultMap">
+        select * from bjf_merchant where mc_phone_number = #{phoneNumber}
+    </select>
+
+    <select id="queryBjfMerchantByEmail" parameterType="string" resultMap="BaseResultMap">
+        select * from bjf_merchant where mc_email = #{email}
+    </select>
+
+    <!-- 获取商家logo展示在首页 -->
+    <select id="selectLogo" resultType="java.lang.String">
+    select
+    mc_message
+    from
+    bjf_merchant;
+
+  </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from bjf_merchant
+        where mc_id = #{mcId,jdbcType=INTEGER}
+    </select>
+
+</mapper>

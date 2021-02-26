@@ -1,0 +1,45 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+button{
+	margin: 0;
+	padding: 0;
+	border: 1px solid transparent;  /* //自定义边框 */
+	outline: none;    /* //消除默认点击蓝色边框效果 */
+}
+hr{
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+.paymentlogo{
+	height: 27px;
+	margin: 0 10px;
+}
+.select-box{
+	height: 500px;
+	width: 70%;
+	margin: 0 auto;
+	/* border: 1px solid #000000; */
+	box-shadow:0 0 20px #aeaeae;
+	border-radius: 40px;
+	padding: 50px;
+	margin-bottom: 40px;
+}
+input[type="radio"] {
+	
+}
+label {
+	padding-left: 20px;
+	cursor: pointer;
+	width: 100%;
+	padding: 10px 20px;
+}
+#payment-submit{
+	height: 40px;
+	width: 200px;
+	background: #009fe6;
+	border-radius: 5px;
+	margin-top: 40px;
+	color: #fff;
+}

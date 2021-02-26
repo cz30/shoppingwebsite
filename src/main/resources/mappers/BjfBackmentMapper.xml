@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjf.mapper.BjfBackmentMapper">
+  <resultMap id="BaseResultMap" type="com.bjf.pojo.BjfBackment">
+    <id column="bm_id" jdbcType="INTEGER" property="bmId" />
+    <result column="pay_out_trade_no" jdbcType="VARCHAR" property="payOutTradeNo" />
+    <result column="pay_alipay_trade_no" jdbcType="VARCHAR" property="payAlipayTradeNo" />
+    <result column="oi_id" jdbcType="INTEGER" property="oiId" />
+    <result column="bm_money" jdbcType="DECIMAL" property="bmMoney" />
+    <result column="bm_status" jdbcType="INTEGER" property="bmStatus"/>
+    <result column="bm_reasion" jdbcType="VARCHAR" property="bmReasion"/>
+    <result column="bm_image" jdbcType="VARCHAR" property="bmImage"/>
+    <result column="bm_back_time" jdbcType="TIMESTAMP" property="bmBackTime"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    bm_id, pay_out_trade_no, pay_alipay_trade_no, cmd_id, bm_money, bm_image, bm_reason
+  </sql>
+  <!--添加退款商品信息-->
+  <insert id="insertBackOrderItems" parameterType="com.bjf.pojo.BjfBackment">
+    insert into bjf_backment(bm_id,pay_out_trade_no,pay_alipay_trade_no,oi_id,bm_money,bm_status,bm_reasion,bm_image,bm_back_time) values(default ,#{payOutTradeNo},#{payAlipayTradeNo},#{oiId},#{bmMoney},#{bmStatus},#{bmReasion},#{bmImage},sysdate())
+  </insert>
+  <!--删除取消退款的商品-->
+  <delete id="delectBackOrderItems">
+    delete from bjf_backment where pay_out_trade_no = #{param1} and oi_id = #{param2}
+  </delete>
+
+
+</mapper>

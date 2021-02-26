@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjf.mapper.BjfSlideshowMapper">
+  <resultMap id="BaseResultMap" type="com.bjf.pojo.BjfSlideshow">
+    <id column="slide_id" jdbcType="INTEGER" property="slideId" />
+    <result column="slide_image" jdbcType="VARCHAR" property="slideImage" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    slide_id, slide_image
+  </sql>
+  <select id="slideshow" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from bjf_slideshow;
+  </select>
+</mapper>

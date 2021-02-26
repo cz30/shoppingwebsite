@@ -1,0 +1,130 @@
+.headBox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+.headBox img{
+    width: 87px;
+	height: 87px;
+}
+.vipNewsBox{
+    display: inline-block;
+    margin: 0 10px;
+}
+.vipName{
+    font-family: Arial-BoldMT;
+	font-size: 32px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 33px;
+	letter-spacing: 0px;
+	color: #6f3629;
+}
+.vipName div:first-child{
+    font-family: ArialMT;
+	font-size: 32px;
+	font-weight: normal;
+	letter-spacing: 0px;
+	color: #6f3629;
+}
+.vipBtnRenew{ /* 续费按钮 */
+    width: 160px;
+    height: 36px;
+    background-color: #009fe6;
+    color: #ffffff;
+    line-height: 36px;
+    border-radius: 18px;
+    float: right;
+    text-align: center;
+    cursor: pointer;
+    border: 0;
+}
+.vipBtnEnter{ /* 登录按钮 */
+    width: 160px;
+    height: 36px;
+    background-color: #38393a;
+    color: #ffffff;
+    line-height: 36px;
+    border-radius: 18px;
+    float: right;
+    text-align: center;
+    cursor: pointer;
+}
+.mbTimes{
+    font-family: AdobeHeitiStd-Regular;
+	font-size: 16px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 33px;
+	letter-spacing: 0px;
+	color: #976f62;
+}
+.mbEtime{
+	height: 19px;
+	font-family: AdobeHeitiStd-Regular;
+	font-size: 14px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 33px;
+	letter-spacing: 0px;
+	color: #976f62;
+}
+.icon_title{
+    margin: 30px 0 5px 0;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: 0px;
+    color: #000000;
+}
+.iconBox img{
+    width: 60px;
+	height: 60px;
+}
+.iconBox span{
+    display: block;
+    color: #000000;
+    margin: 10px 0;
+}
+.allIcon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+.interest_title{
+    font-family: SimHei;
+	font-size: 20px;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0px;
+    color: #000000;
+    margin:20px 0 10px 0;
+}
+.offerBox{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.one_offer{
+    width: 242px;
+	height: 210px;
+    background-color: #eaeaea;
+    margin:0 9px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    vertical-align: center;
+    padding: 20px 40px;
+    border-radius: 5px;
+    text-align: center;
+}
+.one_offer img{
+    width: 160px;
+    height: 120px;
+}
+.offer_title{
+    margin: 15px 0 5px 0;
+}

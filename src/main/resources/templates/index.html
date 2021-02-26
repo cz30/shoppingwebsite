@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商城首页</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <!-- 新 Bootstrap 核心 CSS 文件 -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- 轮播图引入css文件 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.1/css/swiper.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+
+  <!--    弹窗库样式-->
+  <link href="https://cdn.bootcdn.net/ajax/libs/limonte-sweetalert2/10.2.0/sweetalert2.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/dialog.css">
+
+  <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+  <script src="/js/jquery-3.5.1.js"></script>
+  <!--    弹窗库-->
+  <script src="https://cdn.bootcdn.net/ajax/libs/limonte-sweetalert2/10.2.0/sweetalert2.all.js"></script>
+  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+  <script src="/js/bootstrap.js"></script>
+  <!-- 轮播图js文件 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.1/js/swiper.min.js"></script>
+  <!-- 头尾js -->
+  <script src="/js/headEnd.js"></script>
+  <script src="/js/index.js"></script>
+  <script src="/js/dialog.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <link rel="stylesheet" href="/css/headEnd.css">
+</head>
+<body>
+<div class="box">
+  <!--    头部导航条-->
+  <div class="header-box">
+    <div class="clearfix top">
+      <div class="col-md-12" style="padding: 0;">
+        <span class="leftText">欢迎你！
+          <a href="Login.html" class="go_login">去登录</a>
+          <a class="exit_login">退出</a>
+        </span>
+        <span class="rightText" style="width: 387px;">
+          <a href="Index.html">首页</a>|
+          <a id="order">我的订单</a>|
+          <a id="mycart">我的购物车</a>|
+          <a id="person">个人中心</a>
+          <button type="button" class="btn btn-danger" id="couponDialog">领取优惠券</button>
+        </span>
+
+      </div>
+      <div class="search">
+        <img src="/images/logo.png">
+        <div style="margin-right: 5px;">
+          <input type="text" class="search-text" name="key" onblur="ajax()">
+          <button class="search-btn" id="btn1"><a id="checka">搜索</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 导航+轮播图 -->
+  <div class="item-box">
+    <!-- 左侧菜单栏 -->
+    <div class="nav-box">
+      <div class="nav-list1">全部商品分类</div>
+      <ul class="nav-item"></ul>
+    </div>
+    <!-- 导航+轮播图 -->
+    <div class="banner-box swiper-container">
+      <div id="banner-img" class="swiper-wrapper"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+  <!--    今日推荐+图片商品推荐-->
+  <div class="middle-image">
+    <div class="tuijian-box">
+      <img src="/images/推荐5.jpg" height="160" width="210"/>
+      <div class="tuijian-box-2"></div>
+    </div>
+    <!--        商品推荐-->
+    <div class="product-image"></div>
+  </div>
+  <!--    主要商品推荐-->
+  <div class="row clearfix middle"></div>
+  <!--    尾部导航条-->
+  <div class="bottem-nav-box">
+    <div class="row clearfix bottem">
+      <!--        正品保障+购物指南-->
+      <div class="col-md-12 column">
+        <!--            图标+第一块文字-->
+        <div class="bottem-text text1">
+          <img src="/images/icon.jpg">
+          <span>正品保障，提供发票</span><br><br>
+          <br><span class="bottem-text-title">购物指南</span>
+          <div class="bottem-text-content">
+            <span>购物流程</span>
+            <br><span>会员介绍</span>
+            <br><span>生活旅行团购</span>
+            <br><span>常见问题</span>
+            <br><span>购物指南</span>
+          </div>
+        </div>
+        <!--            图标+第二块文字-->
+        <div class="bottem-text text1">
+          <img src="/images/icon.jpg">
+          <span>正品保障，提供发票</span><br><br>
+          <br><span class="bottem-text-title">购物指南</span>
+          <div class="bottem-text-content">
+            <span>购物流程</span>
+            <br><span>会员介绍</span>
+            <br><span>生活旅行团购</span>
+            <br><span>常见问题</span>
+            <br><span>购物指南</span>
+          </div>
+        </div>
+        <!--            图标+第三块文字-->
+        <div class="bottem-text text1">
+          <img src="/images/icon.jpg">
+          <span>正品保障，提供发票</span><br><br>
+          <br><span class="bottem-text-title">购物指南</span>
+          <div class="bottem-text-content">
+            <span>购物流程</span>
+            <br><span>会员介绍</span>
+            <br><span>生活旅行团购</span>
+            <br><span>常见问题</span>
+            <br><span>购物指南</span>
+          </div>
+        </div>
+        <!--            图标+第四块文字-->
+        <div class="bottem-text1 text1">
+          <img src="/images/icon.jpg">
+          <span>正品保障，提供发票</span><br><br>
+          <br><span class="bottem-text-title">购物指南</span>
+          <div class="bottem-text-content">
+            <span>购物流程</span>
+            <br><span>会员介绍</span>
+            <br><span>生活旅行团购</span>
+            <br><span>常见问题</span>
+            <br><span>购物指南</span>
+          </div>
+        </div>
+        <div class="erweima"></div>
+
+      </div>
+      <!--        底部介绍-->
+      <div class="col-md-12 column footer">
+        <ul>
+          <span>关于我们</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+          <span>联系我们</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+          <span>联系客服</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+          <span>营销中心</span>
+        </ul>
+        <ul>
+          <span>地址：浙江省宁波市鄞州区柏庭养老管理集团主楼5楼 邮编：31500 电话00-000000000 邮箱：bangjifans.com</span>
+        </ul>
+        <ul>
+          <span>京ICP备08001421号京公网安备110108007702</span>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

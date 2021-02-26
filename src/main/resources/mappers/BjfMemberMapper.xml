@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjf.mapper.BjfMemberMapper">
+  <resultMap id="BaseResultMap" type="com.bjf.pojo.BjfMember">
+    <id column="mb_id" jdbcType="INTEGER" property="mbId" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="mb_stime" jdbcType="DATE" property="mbStime" />
+    <result column="mb_etime" jdbcType="DATE" property="mbEtime" />
+    <result column="mb_times" jdbcType="INTEGER" property="mbTimes" />
+  </resultMap>
+  <resultMap id="BaseResultMap1" type="com.bjf.pojo.vo.BjfAllMemberVo">
+    <id column="mb_id" jdbcType="INTEGER" property="mbId" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="u_member" jdbcType="INTEGER" property="uMember" />
+    <result column="u_account" jdbcType="VARCHAR" property="uAccount" />
+    <result column="u_head_sculpture" jdbcType="VARCHAR" property="uHeadSculpture" />
+    <result column="mb_stime" jdbcType="DATE" property="mbStime" />
+    <result column="mb_etime" jdbcType="DATE" property="mbEtime" />
+    <result column="mb_times" jdbcType="INTEGER" property="mbTimes" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mb_id, u_id, mb_stime, mb_etime, mb_times
+  </sql>
+
+
+
+  <select id="selectCountByUserId" parameterType="java.lang.Integer" resultType="integer">
+    SELECT count(1)
+    FROM bjf_member
+    where mb_id = #{u_id}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bjf_member
+    where mb_id = #{mbId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bjf_member
+    where mb_id = #{mbId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="mb_id" keyProperty="mbId" parameterType="com.bjf.pojo.BjfMember" useGeneratedKeys="true">
+    insert into bjf_member (u_id, mb_status, mb_stime, 
+      mb_etime, mb_times)
+    values (#{uId,jdbcType=INTEGER}, #{mbStatus,jdbcType=INTEGER}, #{mbStime,jdbcType=DATE}, 
+      #{mbEtime,jdbcType=DATE}, #{mbTimes,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.bjf.pojo.BjfMember">
+    update bjf_member
+    set u_id = #{uId,jdbcType=INTEGER},
+      mb_status = #{mbStatus,jdbcType=INTEGER},
+      mb_stime = #{mbStime,jdbcType=DATE},
+      mb_etime = #{mbEtime,jdbcType=DATE},
+      mb_times = #{mbTimes,jdbcType=INTEGER}
+    where mb_id = #{mbId,jdbcType=INTEGER}
+  </update>
+
+  <!-- 根据用户id查询会员信息 -->
+  <select id="selectByUIdKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bjf_member
+    where u_id = #{uId,jdbcType=INTEGER}
+  </select>
+  <!-- 根据用户id查询用户信息和会员信息 -->
+  <select id="selectByuId" resultMap="BaseResultMap1" parameterType="java.lang.Integer">
+        SELECT
+         b.`mb_id`,a.`u_id`,a.u_member,a.u_account,a.u_head_sculpture,
+         b.`mb_stime`,b.`mb_etime`,b.`mb_times`
+         FROM `bjf_user` a
+         JOIN `bjf_member` b
+         ON a.`u_id`=b.`u_id` AND a.`u_id`=#{uId,jdbcType=INTEGER};
+    </select>
+    <select id="selectMPByUId" resultType="java.lang.Integer">
+    SELECT
+        mb_times
+    FROM
+        bjf_member
+    WHERE
+        u_id=#{uId}
+    </select>
+    <!-- 向会员表中插入数据 -->
+  <insert id="insertSelective" keyColumn="mb_id" keyProperty="mbId" parameterType="com.bjf.pojo.BjfMember" useGeneratedKeys="true">
+    insert into bjf_member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="mbStime != null">
+        mb_stime,
+      </if>
+      <if test="mbEtime != null">
+        mb_etime,
+      </if>
+      <if test="mbTimes != null">
+        mb_times,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="mbStime != null">
+        #{mbStime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mbEtime != null">
+        #{mbEtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mbTimes != null">
+        #{mbTimes,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <!-- 根据用户id修改会员信息 -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.bjf.pojo.BjfMember">
+    update bjf_member
+    <set>
+      <if test="mbStime != null">
+        mb_stime = #{mbStime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mbEtime != null">
+        mb_etime = #{mbEtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mbTimes != null">
+        mb_times = #{mbTimes,jdbcType=INTEGER},
+      </if>
+    </set>
+    where u_id = #{uId,jdbcType=INTEGER}
+  </update>
+  <update id="updMbTimesByUId">
+    UPDATE
+        bjf_member
+    SET
+        mb_times = mb_times - 1
+    WHERE
+        u_id = #{uId}
+  </update>
+</mapper>

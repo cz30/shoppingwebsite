@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjf.mapper.BjfCartMapper">
+  <resultMap id="BaseResultMap" type="com.bjf.pojo.BjfCart">
+    <id column="cart_id" jdbcType="INTEGER" property="cartId" />
+    <result column="cart_image" jdbcType="VARCHAR" property="cartImage" />
+    <result column="cart_oprice" jdbcType="DECIMAL" property="cartOprice" />
+    <result column="cart_nprice" jdbcType="DECIMAL" property="cartNprice" />
+    <result column="cart_title" jdbcType="VARCHAR" property="cartTitle" />
+    <result column="cart_num" jdbcType="INTEGER" property="cartNum" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="cmd_id" jdbcType="INTEGER" property="cmdId" />
+    <result column="cart_time" jdbcType="TIMESTAMP" property="cartTime" />
+    <result column="spf_id" jdbcType="INTEGER" property="spfId" />
+    <result column="cart_content" jdbcType="VARCHAR" property="cartContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cart_id, cart_image, cart_oprice, cart_nprice, cart_title, cart_num, u_id, cmd_id, 
+    cart_time, spf_id, cart_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bjf_cart
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </select>
+    <select id="findOneCart" resultMap="BaseResultMap">
+    SELECT
+        *
+    FROM
+        bjf_cart
+    WHERE
+        u_id=#{uId} AND spf_id=#{spfId}
+    </select>
+    <select id="findByUId" resultMap="BaseResultMap">
+    SELECT
+        *
+    FROM
+        bjf_cart
+    WHERE
+        u_id=#{uId}
+    ORDER BY
+        cart_time DESC
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bjf_cart
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" keyColumn="cart_id" keyProperty="cartId" parameterType="com.bjf.pojo.BjfCart" useGeneratedKeys="true">
+    insert into bjf_cart (cart_image, cart_oprice, cart_nprice, 
+      cart_title, cart_num, u_id, 
+      cmd_id, cart_time, spf_id, 
+      cart_content)
+    values (#{cartImage,jdbcType=VARCHAR}, #{cartOprice,jdbcType=DECIMAL}, #{cartNprice,jdbcType=DECIMAL}, 
+      #{cartTitle,jdbcType=VARCHAR}, #{cartNum,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, 
+      #{cmdId,jdbcType=INTEGER}, #{cartTime,jdbcType=TIMESTAMP}, #{spfId,jdbcType=INTEGER}, 
+      #{cartContent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="cart_id" keyProperty="cartId" parameterType="com.bjf.pojo.BjfCart" useGeneratedKeys="true">
+    insert into bjf_cart
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cartImage != null">
+        cart_image,
+      </if>
+      <if test="cartOprice != null">
+        cart_oprice,
+      </if>
+      <if test="cartNprice != null">
+        cart_nprice,
+      </if>
+      <if test="cartTitle != null">
+        cart_title,
+      </if>
+      <if test="cartNum != null">
+        cart_num,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="cmdId != null">
+        cmd_id,
+      </if>
+      <if test="cartTime != null">
+        cart_time,
+      </if>
+      <if test="spfId != null">
+        spf_id,
+      </if>
+      <if test="cartContent != null">
+        cart_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cartImage != null">
+        #{cartImage,jdbcType=VARCHAR},
+      </if>
+      <if test="cartOprice != null">
+        #{cartOprice,jdbcType=DECIMAL},
+      </if>
+      <if test="cartNprice != null">
+        #{cartNprice,jdbcType=DECIMAL},
+      </if>
+      <if test="cartTitle != null">
+        #{cartTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="cartNum != null">
+        #{cartNum,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="cmdId != null">
+        #{cmdId,jdbcType=INTEGER},
+      </if>
+      <if test="cartTime != null">
+        #{cartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="spfId != null">
+        #{spfId,jdbcType=INTEGER},
+      </if>
+      <if test="cartContent != null">
+        #{cartContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bjf.pojo.BjfCart">
+    update bjf_cart
+    <set>
+      <if test="cartImage != null">
+        cart_image = #{cartImage,jdbcType=VARCHAR},
+      </if>
+      <if test="cartOprice != null">
+        cart_oprice = #{cartOprice,jdbcType=DECIMAL},
+      </if>
+      <if test="cartNprice != null">
+        cart_nprice = #{cartNprice,jdbcType=DECIMAL},
+      </if>
+      <if test="cartTitle != null">
+        cart_title = #{cartTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="cartNum != null">
+        cart_num = #{cartNum,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="cmdId != null">
+        cmd_id = #{cmdId,jdbcType=INTEGER},
+      </if>
+      <if test="cartTime != null">
+        cart_time = #{cartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="spfId != null">
+        spf_id = #{spfId,jdbcType=INTEGER},
+      </if>
+      <if test="cartContent != null">
+        cart_content = #{cartContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bjf.pojo.BjfCart">
+    update bjf_cart
+    set cart_image = #{cartImage,jdbcType=VARCHAR},
+      cart_oprice = #{cartOprice,jdbcType=DECIMAL},
+      cart_nprice = #{cartNprice,jdbcType=DECIMAL},
+      cart_title = #{cartTitle,jdbcType=VARCHAR},
+      cart_num = #{cartNum,jdbcType=INTEGER},
+      u_id = #{uId,jdbcType=INTEGER},
+      cmd_id = #{cmdId,jdbcType=INTEGER},
+      cart_time = #{cartTime,jdbcType=TIMESTAMP},
+      spf_id = #{spfId,jdbcType=INTEGER},
+      cart_content = #{cartContent,jdbcType=VARCHAR}
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="/js/jquery-3.5.1.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+
+    <!-- <script src="/js/jquery-2.1.4.min.js"></script> -->
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
+        rel="stylesheet">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="/js/bootstrap.js"></script>
+
+    <link href="/css/person.css" rel="stylesheet">
+    <!-- 头尾样式 -->
+    <link rel="stylesheet" href="/css/headEnd.css">
+    <!-- 头尾js -->
+    <script src="/js/headEnd.js"></script>
+
+    <script src="/layer/layer.js"></script>
+    <script src="/js/m.js"></script>
+    <!-- 时间选择器的引入 -->
+    <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment-with-locales.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+    <!-- 获取坐标 -->
+    <script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=1uGSONnl0vOaDWKxqUQXPfiihyjVyXnA"></script>
+
+    <script src="/js/person.js"></script>
+</head>
+
+<body>
+    <!--    头部导航条-->
+    <div class="header-box">
+        <div class="clearfix top">
+            <div class="col-md-12">
+                <span class="leftText">欢迎你！<a class="exit_login">退出</a></span>
+                <span class="rightText">
+                    <a href="Index.html">首页</a>|
+                    <a id="order">我的订单</a>|
+                    <a id="mycart">我的购物车</a>|
+                    <a id="person">个人中心</a>
+                </span>
+            </div>
+            <div class="search">
+                <img src="/images/logo.png">
+
+            </div>
+        </div>
+    </div>
+    <!--     中心内容 -->
+    <div class="main_box">
+        <!-- 左侧导航栏 -->
+        <div class="left_nav">
+            <div><img src="" alt="" id="left_img"></div>
+            <div id="big_name"></div>
+            <!-- <div>超级会员</div> -->
+            <div class="sameclass ativeclass">个人首页</div>
+            <div style="width: 238px;height: 59px;line-height: 59px;margin: 23px 20px;"><a href="vipHome.html">我的会员</a>
+            </div>
+            <div class="sameclass" id="getCoupon">优惠券</div>
+            <div class="sameclass" id="getAddress">收货地址</div>
+            <div class="sameclass">购物车</div>
+            <div class="sameclass">我的订单</div>
+            <div class="sameclass">账号设置</div>
+            <a class="glyphicon glyphicon-off" id="logOut" data-toggle="modal" data-target="#staticBackdrop">退出登陆</a>
+        </div>
+        <div class="right_box">
+            <!-- 个人中心模块-->
+            <div class="person_center">
+                <div class="right_top_box">
+                    个人中心
+                </div>
+                <div class="right_bottom_box">
+                    <div class="showPerson">
+                        <!-- <input type="file"  style="display:none" id="uploadfile" accept="image/*"/> -->
+                        <img src="" alt="" class="img-circle" style="margin: 15px;" id="person_headImg">
+                        <div>
+                            <div>
+                                <label>昵称：</label><span id="person_name"></span>
+                            </div>
+                            <div>
+                                <label>账号：</label><span id="person_userName"></span>
+                            </div>
+                            <div>
+                                <label>生日：</label><span id="person_birth"></span>
+                            </div>
+                            <div>
+                                <label>性别：</label><span id="person_sex"></span>
+                            </div>
+                            <div>
+                                <label>积分：</label><span id="person_integral"></span>
+                            </div>
+                            <div>
+                                <label>手机号码：</label><span id="person_phone"></span>
+                            </div>
+                            <div>
+                                <label>邮箱：</label><span id="person_email"></span>
+                            </div>
+                        </div>
+                        <div class="clickCorret">
+                            点击修改
+                        </div>
+                    </div>
+                    <div class="corretPerson">
+                        <!-- <iframe id="iframe_display" name="iframe_display" style="display: none;"></iframe>  -->
+                        <form action="/user/updataUser" enctype="multipart/form-data"
+                            method="post" id="person_form">
+                            <div style="text-align: center;">
+                                <input type="file" style="display:none" id="uploadfile" name="file" accept="image/*" />
+                                <img src="" alt="" class="img-circle" id="image">
+                            </div>
+                            <div>
+                                <div>
+                                    <label>昵称：</label>
+                                    <input type="text" id="name" name="uAccount" value="">
+                                </div>
+                                <div>
+                                    <!--  选择生日的日期控件 -->
+                                    <div class="form-group">
+                                        <label>生日：</label>
+                                        <div class='input-group date' id='datetimepicker1'
+                                            style="width: 83%;margin-left: 5px">
+                                            <input type='text' class="form-control" name="birth" id="birth" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label>性别：</label>
+                                    <input class="myforms-3-2" type="radio" checked="checked" id="man" name="uSex"
+                                        value="男"" style=" width: 20px;height: 15px;">男
+                                    <input class="myforms-3-3" type="radio" id="woman" name="uSex" value="女"
+                                        style="margin-left: 60px;width: 20px;height: 15px;">女
+                                </div>
+                                <input type="hidden"  name="uId" id="userId" >
+                            </div>
+                            <div style="display: flex;justify-content: space-around;align-items: center;">
+                                <div class="cancle_buttom">
+                                    取消
+                                </div>
+                                <button class="confirm_buttom">
+                                    确认修改
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--  优惠券模块 -->
+            <div class="coupon">
+                <div class="right_top_box">
+                    优惠券
+                </div>
+                <div class="coupon_bottom_box">
+                    <!-- 放置插入的优惠券 -->
+                </div>
+            </div>
+            <!--收货地址模块 -->
+            <div class="address">
+                <!-- 头部的导航和添加地址按钮 -->
+                <div class="right_top_box">
+                    <span>收货地址</span>
+                    <span style="float: right;cursor: pointer;font-size: 20px"  id="addbtn"
+                        data-toggle="modal" data-target="#corretDressModal">+添加地址</span>
+                </div>
+                <div class="address_bottom_box">
+                </div>
+                <!--收货人、电话、地址， 修改、删除的弹窗 -->
+                <div class="modal fade" id="corretDressModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                    role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content" style="width: 800px;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel" style="display: inline-block;">修改地址
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body address_lable">
+                                <div id="allmap"></div>
+                                <div><label>地址：</label><input  style="width: 90%" type="text" placeholder="请输入"" class=" dress"></input>
+                                </div>
+                                <div><label>收货人：</label><input  style="width: 90%" type="text" placeholder="请输入" class="person"></div>
+                                <div><label>电话：</label><input style="width: 90%" type="text" placeholder="请输入" class="phoneNumber"
+                                        onkeyup="value=value.replace(/[^\d]/g,'')" maxlength=11></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" id='corretDress'>修改</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 账号设置模块 -->
+            <div class="accountSet">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#telphone" aria-controls="home" role="tab"
+                            data-toggle="tab">修改邮箱</a></li>
+                    <li role="presentation"><a href="#email" aria-controls="profile" role="tab"
+                            data-toggle="tab">修改手机</a></li>
+                    <li role="presentation"><a href="#password" aria-controls="messages" role="tab"
+                            data-toggle="tab">修改密码</a></li>
+                </ul>
+                <div class="tab-content">
+                    <!-- 修改邮箱 -->
+                    <div role="tabpanel" class="tab-pane active" id="telphone">
+                        <div class="phoneTip">
+                            验证码将发送到手机<span class="star_phone"></span>
+                        </div>
+                        <div class="reGetTip">
+                            如果长时间没有收到验证码，请重新获取验证码
+                        </div>
+                        <div>
+                            <span style="width: 90px;text-align: end;">验证码：</span><input type="text" id="code3">
+                            <button class="btn btn-small get-code" id="A_getCode">获取验证码</button>
+                            <button class="btn btn-small reset-code" id="A_resetCode" style="display:none;"><span
+                                    id="A_second">60</span>秒后重发</button>
+                        </div>
+                        <div>
+                            <span style="width: 90px;text-align: end;">新的邮箱号：</span><input type="text"
+                                id="person_newMail">
+                        </div>
+                        <div style="display: flex;justify-content: center">
+                            <button class="submitByPhone1">提交</button>
+                        </div>
+                        <div class="throughEmail" data-toggle="modal" data-target="#corretMailByEmail">
+                            通过邮箱验证
+                        </div>
+                    </div>
+                    <!-- 修改手机 -->
+                    <div role="tabpanel2" class="tab-pane" id="email">
+                        <div class="phoneTip">
+                            验证码将发送到手机<span class="star_phone"></span>
+                        </div>
+                        <div class="reGetTip">
+                            如果长时间没有收到验证码，请重新获取验证码
+                        </div>
+                        <div>
+                            <span style="width: 90px;text-align: end;">验证码：</span><input type="text" id="code4">
+                            <button class="btn btn-small get-code" id="J_getCode">获取验证码</button>
+                            <button class="btn btn-small reset-code" id="J_resetCode" style="display:none;"><span
+                                    id="J_second">60</span>秒后重发</button>
+                        </div>
+                        <div>
+                            <span style="width: 90px;text-align: end;">新的手机号：</span><input type="text"
+                                id="person_newPhone3" maxlength=11 onkeyup="this.value=this.value.replace(/\D/g,'')"
+                                onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                        </div>
+                        <div style="display: flex;justify-content: center">
+                            <button class="submitByPhone">提交</button>
+                        </div>
+                        <div class="throughEmail" data-toggle="modal" data-target="#corretByEmail">
+                            通过邮箱验证
+                        </div>
+                    </div>
+                    <!-- 修改密码 -->
+                    <div role="tabpanel3" class="tab-pane" id="password">
+                        <div class="password_box">
+                            <div>
+                                <h5>输入旧密码：</h5><input type="password" id="oldPassword">
+                            </div>
+                            <div>
+                                <h5>输入新密码：</h5><input type="password" id="newPassword">
+                            </div>
+                            <div>
+                                <h5>确认新密码：</h5><input type="password" id="newPassword1">
+                            </div>
+                            <div>
+                                <div class="sure">确认</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    尾部导航条-->
+    <div class="bottem-nav-box">
+        <div class="row clearfix bottem">
+            <!--        正品保障+购物指南-->
+            <div class="col-md-12 column">
+                <!--            图标+第一块文字-->
+                <div class="bottem-text text1">
+                    <img src="/images/icon.jpg">
+                    <span>正品保障，提供发票</span><br><br>
+                    <br><span class="bottem-text-title">购物指南</span>
+                    <div class="bottem-text-content">
+                        <span>购物流程</span>
+                        <br><span>会员介绍</span>
+                        <br><span>生活旅行团购</span>
+                        <br><span>常见问题</span>
+                        <br><span>购物指南</span>
+                    </div>
+                </div>
+                <!--            图标+第二块文字-->
+                <div class="bottem-text text1">
+                    <img src="/images/icon.jpg">
+                    <span>正品保障，提供发票</span><br><br>
+                    <br><span class="bottem-text-title">购物指南</span>
+                    <div class="bottem-text-content">
+                        <span>购物流程</span>
+                        <br><span>会员介绍</span>
+                        <br><span>生活旅行团购</span>
+                        <br><span>常见问题</span>
+                        <br><span>购物指南</span>
+                    </div>
+                </div>
+                <!--            图标+第三块文字-->
+                <div class="bottem-text text1">
+                    <img src="/images/icon.jpg">
+                    <span>正品保障，提供发票</span><br><br>
+                    <br><span class="bottem-text-title">购物指南</span>
+                    <div class="bottem-text-content">
+                        <span>购物流程</span>
+                        <br><span>会员介绍</span>
+                        <br><span>生活旅行团购</span>
+                        <br><span>常见问题</span>
+                        <br><span>购物指南</span>
+                    </div>
+                </div>
+                <!--            图标+第四块文字-->
+                <div class="bottem-text1 text1">
+                    <img src="/images/icon.jpg">
+                    <span>正品保障，提供发票</span><br><br>
+                    <br><span class="bottem-text-title">购物指南</span>
+                    <div class="bottem-text-content">
+                        <span>购物流程</span>
+                        <br><span>会员介绍</span>
+                        <br><span>生活旅行团购</span>
+                        <br><span>常见问题</span>
+                        <br><span>购物指南</span>
+                    </div>
+                </div>
+                <div class="erweima"></div>
+
+            </div>
+            <!--        底部介绍-->
+            <div class="col-md-12 column footer">
+                <ul>
+                    <span>关于我们</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+                    <span>联系我们</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+                    <span>联系客服</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+                    <span>营销中心</span>
+                </ul>
+                <ul>
+                    <span>地址：浙江省宁波市鄞州区柏庭养老管理集团主楼5楼 邮编：31500 电话00-000000000 邮箱：bangjifans.com</span>
+
+                </ul>
+                <ul>
+                    <span>京ICP备08001421号京公网安备110108007702</span>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--通过邮箱验证修改手机号的弹窗 -->
+    <div class="modal fade" id="corretByEmail" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel" style="display: inline-block;">修改手机号</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h5 style="width: 90px;text-align: end;">验证码：</h5><input type="text" id="code2">
+                        <button class="btn btn-small get-code modal_getCode" id="X_getCode">获取验证码</button>
+                        <button class="btn btn-small reset-code  modal_resetCode" id="X_resetCode"
+                            style="display:none;"><span id="X_second">60</span>秒后重发</button>
+                    </div>
+                    <div>
+                        <h5 style="width: 90px;text-align: end;">新的手机号：</h5><input type="text" id="person_newPhone4"
+                            maxlength=11 onkeyup="this.value=this.value.replace(/[^\d]/g,'') "
+                            onafterpaste="this.value=this.value.replace(/[^\d]/g,'')">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id='submitByEmail' data-dismiss="modal">修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--通过邮箱验证修改邮箱号的弹窗 -->
+    <div class="modal fade" id="corretMailByEmail" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel" style="display: inline-block;">修改邮箱</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h5 style="width: 90px;text-align: end;">验证码：</h5><input type="text" id="code1">
+                        <button class="btn btn-small get-code modal_getCode" id="B_getCode">获取验证码</button>
+                        <button class="btn btn-small reset-code  modal_resetCode" id="B_resetCode"
+                            style="display:none;"><span id="B_second">60</span>秒后重发</button>
+                    </div>
+                    <div>
+                        <h5 style="width: 90px;text-align: end;">新的邮箱：</h5><input type="text" id="person_newMail1">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id='submitByEmail1'>修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript">
+</script>

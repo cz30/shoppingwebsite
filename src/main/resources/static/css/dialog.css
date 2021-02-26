@@ -1,0 +1,79 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#couponDialog {
+  margin-bottom: 3px;
+}
+
+.btn:hover, .btn:focus, .btn:active, .btn:visited {
+  outline: none;
+  box-shadow: none !important;
+}
+
+/*优惠券样式*/
+#couponList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.coupon {
+  width: 200px;
+  height: 100px;
+  margin-top: 20px;
+  background: url("../images/couponbg.png");
+  display: flex;
+  flex-direction: row;
+}
+
+.couponWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.couponValue {
+  margin-top: 12px;
+  padding-left: 12px;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+}
+
+.couponTime {
+  margin-left: 10px;
+  padding-top: 16px;
+  font-size: 16px;
+  text-align: center;
+  color: white;
+}
+
+.couponBtn {
+  margin-left: 20px;
+  margin-top: 13px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  font-size: 26px;
+}
+
+.couponBtn > span {
+  color: white;
+}
+
+.couponBtn:focus {
+  border: none;
+  outline: none;
+}
+
+.noCoupon {
+  width: 100%;
+}
+
+
+

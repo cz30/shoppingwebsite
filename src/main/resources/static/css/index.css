@@ -1,0 +1,459 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.item-box a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+fieldset, img {
+  border: 0;
+}
+
+address, caption, cite, code, dfn, em, strong, th, var {
+  font-style: normal;
+  font-weight: normal;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+caption, th {
+  text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+q:before, q:after {
+  content: '';
+}
+
+abbr, acronym {
+  border: 0;
+}
+
+body {
+  font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.item-box {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.nav-box {
+  width: 210px;
+  height: 494px;
+  background-color: #076ce0;
+}
+
+.nav-list1 {
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  font-size: 18px;
+  color: #ffffff;
+  background-color: #076ce0;
+}
+
+.nav-item{
+  position: relative;
+}
+
+.nav-list {
+  height: 40px;
+  line-height: 42px;
+  text-align: center;
+  font-size: 16px;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(0,0,0,.04);
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+
+.nav-list:hover {
+  background-color: #0055c7;
+  cursor: pointer;
+}
+
+/* 二级导航栏，隐藏 */
+.hide-box {
+  width: 0;
+  height: 494px;
+  position: absolute;
+  left: 210px;
+  top: -48px;
+  /*padding: 0 6px;*/
+  display: none;
+  z-index: 9999;
+  background-color: #fff;
+  border: 1px solid #0055c7;
+  padding: 20px;
+}
+
+.navType-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.navType-box li {
+  height: 34px;
+  line-height: 34px;
+  font-size: 16px;
+  color: #333;
+  text-align: left;
+}
+
+.navType-box ul {
+  display: flex;
+  flex-direction: row;
+}
+
+.navType-box ul li {
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #666666;
+  padding: 0 6px;
+}
+
+.navType-box ul li:hover {
+  color: chocolate;
+}
+
+/* 轮播图 */
+.banner-box {
+  width: 990px;
+  height: 494px;
+  background-color: #d3cece;
+}
+
+.banner {
+  box-sizing: border-box;
+}
+
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  line-height: 14px;
+  text-align: center;
+  border: 2px solid #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  opacity: 1;
+  background: none;
+}
+
+.pagination-dot {
+  background-color: #fff;
+  opacity: 1;
+}
+
+/*今日推荐+商品图片推荐大盒子*/
+.middle-image {
+  margin-top: 10px;
+  margin-bottom: -70px;
+}
+
+/*今日推荐*/
+.tuijian-box {
+  margin-left: 352px;
+  display: flex;
+  flex-direction: row;
+}
+
+.tuijian-box-2 {
+  width: 990px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.tuijian-box-2 img {
+  height: 160px;
+  width: 244px;
+  cursor: pointer;
+}
+
+/*商品图片推荐*/
+.product-image {
+  margin-left: 352px;
+  margin-top: 10px;
+  width: 1200px;
+  height: 300px;
+}
+
+.product-image img {
+  float: left;
+  width: 200px;
+  height: 300px;
+  cursor: pointer;
+}
+
+/*商品详情推荐CSS*/
+/*商品显示*/
+.middle {
+  /*商品总盒子宽度*/
+  width: 1305px;
+  height: 100%;
+  margin-left: 351px;
+  margin-top: 100px;
+}
+
+.middle a {
+  text-decoration: none;
+}
+
+/*商品的盒子*/
+.product {
+  width: 239px;
+  height: 320px;
+  background-color: #ffffff;
+  float: left;
+  border: solid 1px #f3ebeb;
+  /*margin-right: 5px;*/
+  /*margin-top: 10px;*/
+}
+.productdiv :hover{
+  border: solid 1px orange;
+  cursor:pointer;
+}
+.productdiv a * {
+  border: solid 0px #FFFFFF !important;
+
+}
+
+.text {
+  margin-top: 30px;
+  margin-left: 17px;
+}
+
+.texta {
+  width: 89px;
+  height: 20px;
+  font-family: SimSun;
+  font-size: 22px;
+  font-weight: bold;
+  font-stretch: normal;
+  letter-spacing: 0.5px;
+  color: #de3538;
+  line-height: 60px;
+
+}
+
+.textb {
+  width: 218px;
+  height: 45px;
+  font:15px/1.5 tahoma,arial,'Hiragino Sans GB','\5b8b\4f53',sans-serif;
+  font-weight: normal;
+  font-stretch: normal;
+  line-height: 23px;
+  letter-spacing: 0;
+  color: #010101;
+  margin-top: 5px;
+
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+}
+
+.product button {
+  width: 100px;
+  height: 30px;
+  border-radius: 8px;
+  border: solid 1px #8cce2c;
+  margin-top: 12px;
+  margin-left: 10px;
+}
+
+.product img {
+  width: 199px;
+  height: 137px;
+  margin-top: 30px;
+  margin-left: 18px;
+}
+
+/*头尾导航条推荐CSS*/
+.box {
+  width: 100%;
+  height: 100%;
+}
+
+/*头部导航条主体*/
+.header-box {
+  width: 100%;
+  height: 37px;
+  background-color: #eaeaea;
+}
+
+.top {
+  width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.header-box {
+  margin-bottom: 130px;
+}
+
+/*头部超链接文字*/
+.top span a {
+  color: #0f0f0f;
+  margin-left: 5px;
+}
+
+/*头部左侧超链接文字*/
+.leftText {
+  float: left;
+  width: 191px;
+  height: 37px;
+  line-height: 37px;
+  font-family: SimHei;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  letter-spacing: 0;
+  color: #000000;
+}
+
+/*头部右侧超链接文字*/
+.rightText {
+  float: right;
+  height: 37px;
+  line-height: 37px;
+  font-family: SimHei;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  letter-spacing: 0;
+  color: #000000;
+}
+
+/*logo图片*/
+.search {
+  width: 100%;
+  height: 130px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search img {
+  width: 130px;
+  height: 130px;
+}
+
+/*搜索框*/
+.search input {
+  width: 400px;
+  height: 27px;
+  margin-right: -5px;
+}
+
+/*搜索按钮*/
+.search button {
+  width: 80px;
+  height: 28px;
+  background-color: #009fe6;
+  border: solid 2px #009fe6;
+  margin-right: -5px;
+}
+
+#checka {
+  color: #ffffff;
+}
+
+/*底部导航条*/
+.bottem-nav-box {
+  width: 100%;
+  height: 480px;
+  background-color: #eaeaea;
+  margin-top: 150px;
+}
+
+.bottem {
+  width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.bottem-text {
+  float: left;
+  display: inline-block;
+  margin-right: 98px;
+  margin-top: 44px;
+}
+
+.bottem-text1 {
+  float: left;
+  display: inline-block;
+  margin-top: 44px;
+}
+
+.bottem-text-content {
+  margin-left: 60px;
+  margin-top: 20px;
+}
+
+.bottem-text-title {
+  width: 88px;
+  height: 23px;
+  font-family: SimHei;
+  font-size: 24px;
+  line-height: 22px;
+  letter-spacing: -2px;
+  color: #000000;
+  margin-left: 53px;
+}
+
+/*二维码*/
+.erweima {
+  width: 124px;
+  height: 124px;
+  background-color: #ffffff;
+  float: right;
+  margin-top: 184px;
+}
+
+/*底部文字*/
+.footer {
+  margin-top: 30px;
+  color: black;
+}
+
+.footer ul {
+  text-align: center;
+  margin-left: -100px;
+}
+
+.footer ul span {
+  margin-left: 40px;
+  font-family: SimHei;
+  font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: #000000;
+}

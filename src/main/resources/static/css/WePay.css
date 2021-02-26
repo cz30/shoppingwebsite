@@ -1,0 +1,42 @@
+*{
+	padding: 0;
+	margin: 0;
+	font-size: 16px;
+}
+.order-Id-box{
+	margin: 20px;
+}
+.product-box{
+	margin: 10px;
+}
+.payee-box{
+	margin: 10px;
+	margin-bottom: 20px;
+}
+.mount-payable-box{
+	position: absolute;
+	top: 15px;
+	right: 10px;
+}
+#mount-payable{
+	font-size: 24px;
+	font-weight: bold;
+	color: red;
+}
+.paybox{
+	height: 400px;
+	width: auto;
+	border: 1px solid #000000;
+	border-radius: 4px;
+	margin: 40px auto;
+	padding: 20px 40px;
+}
+#QRcode-box{
+	height: 200px;
+	width: 200px;
+	margin: 10px auto;
+}
+.instructions{
+	margin: 10px auto;
+	width: 200px;
+}

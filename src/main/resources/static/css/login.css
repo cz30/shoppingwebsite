@@ -1,0 +1,168 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+a{
+    color: #0f0f0f;
+
+}
+/*logo图片*/
+.img1{
+    margin-left: 200px;
+}
+/*主体容器*/
+.content{
+    /*background: url("http://192.168.0.200/group1/M00/00/01/wKgAyF8gzlKAVT6YAAtN8y3WAWM275.jpg") no-repeat;*/
+    /*border: 5px solid;*/
+    background-image: url("https://i.loli.net/2020/08/19/XCvWpK4jSMPcqgb.jpg");
+    height: 500px;
+    margin-top: 40px;
+}
+/*tab*/
+.tabbable{
+    margin-left: 17px;
+}
+#exampleInputPassword{
+    margin-bottom: 19px;
+}
+/*登录方式字体样式*/
+.nav-tabs{
+    font-family:sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    line-height: 42px;
+    letter-spacing: 0px;
+    color: #333333;
+}
+/*登录表单*/
+.login{
+    /*border: 5px solid;*/
+    margin-left: 475px;
+    background-color: white;
+    margin-top: 30px;
+    height: 404px;
+    width: 470px;
+    border-radius: 17px;
+}
+#exampleInputCheck{
+    width: 345px;
+
+}
+/*发送验证码按钮*/
+#sendCheck{
+    margin-top: 23px;
+    width: 89px;
+    float: left;
+    height: 35px;
+}
+#J_resetCode{
+    margin-top: 23px;
+    width: 89px;
+    float: left;
+    height: 35px;
+}
+#J_resetCode:hover{
+    cursor:not-allowed;
+    /* 光标是一个红色的圈加一个斜杠）*/
+}
+/*验证码小表单*/
+.checkGroup{
+    float: left;
+    margin-bottom: 35px;
+}
+/*账号密码的文字样式*/
+.login label{
+    font-family: sans-serif;
+    font-weight: bolder;
+    font-stretch: normal;
+    color: #0f0f0f;
+}
+/*所有的输入框*/
+.login input{
+    /*width: 306px;*/
+    /*height: 43px;*/
+    background-image: linear-gradient(
+            #f9f9f9,
+            #f9f9f9),
+    linear-gradient(
+            #8e73e8,
+            #8e73e8);
+    background-blend-mode: normal,
+    normal;
+    border: solid 1px #a0a0a0;
+}
+#your-dom-id{
+    margin-bottom: 16px;
+    margin-top: -5px;
+    float: right;
+    width: 382px;
+}
+.checkit{
+    float: left;
+    font-family: sans-serif;
+    font-weight: bolder;
+    font-stretch: normal;
+    color: #0f0f0f;
+}
+/*登录按钮*/
+.login button{
+    width: 431px;
+    background-color: #b7c3ce;
+    text-decoration: none;
+    font-size: unset;
+    font-family: sans-serif;
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: 1px;
+    border-radius: 8px;
+
+}
+/*极验滑动*/
+#nc_1__bg{
+    width: 0px;
+}
+#nc_1_n1z{
+    left: 0px;
+}
+/*忘记密码，注册超链接*/
+.link{
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+.link a{
+    margin-left: 5px;
+    color: #535556;
+    text-decoration: #888888 none;
+    font-family: sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: 0px;
+
+}
+/*底部容器*/
+.footer{
+    margin-top: 30px;
+    /*border: 5px solid;*/
+    color: black;
+}
+.footer ul{
+    text-align: center;
+}
+.footer ul span{
+    margin-left: 40px;
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+    font-stretch: normal;
+    line-height: 22px;
+    letter-spacing: 0px;
+    color: #000000;
+}
+.checkbox button{
+    margin-top: 30px;
+}
+
+

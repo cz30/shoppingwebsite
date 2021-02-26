@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <title>productDetail</title>
+
+  <!-- Bootstrap -->
+  <!-- 头尾样式 -->
+  <link rel="stylesheet" href="/css/headEnd.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link href="/css/productDetail.css" rel="stylesheet">
+
+  <script src="/js/jquery-2.1.4.min.js"></script>
+
+  <script src="/js/productDetail.js"></script>
+  <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+  <script src="/js/bootstrap.js"></script>
+  <!-- 头尾js -->
+  <script src="/js/headEnd.js"></script>
+  <!-- 引入layUI弹出框 -->
+  <script src="/layer/layer.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+</head>
+
+<body>
+  <!--    头部导航条-->
+  <div class="header-box">
+    <div class="clearfix top">
+      <div class="col-md-12">
+       <span class="leftText">欢迎你！
+          <a href="Login.html" class="go_login">去登录</a>
+          <a class="exit_login">退出</a>
+        </span>
+        <span class="rightText" style="width: 387px;">
+          <a href="Index.html">首页</a>|
+          <a id="order">我的订单</a>|
+          <a id="mycart">我的购物车</a>|
+          <a id="person">个人中心</a>
+        </span>
+      </div>
+      <div class="search">
+        <img src="/images/logo.png">
+
+      </div>
+    </div>
+  </div>
+  <div style="display: flex;justify-content: center;flex-wrap: wrap;">
+    <div class="main_box">
+      <!--  轮播图 -->
+      <div class="image_box">
+        <img src="" alt="" class="show" id="image" style="width: 500px;height: 500px;">
+        <div style="clear: both;"></div>
+        <div class="li_box">
+          <ul id="gallary">
+            <!-- 商品属性部分 -->
+          </ul>
+        </div>
+        <!-- <div style="display: flex;justify-content: space-between;margin:35px 0">
+          <span>※收藏商品（6870人气）</span>
+          <span>举报</span>
+        </div> -->
+      </div>
+      <!--商品介绍 -->
+      <div class="word_box">
+        <span class="word_box_h1"></span>
+        <div class="word_box_price">价格：<span class="price"></span></div>
+        <!-- <div class="word_box_city">运费：
+          <select name="sss" style="display: inline-block;margin-left: 50px;">
+            <option value="1">本地</option>
+            <option value="2">小区</option>
+            <option value="3">对面小区</option>
+          </select>
+        </div> -->
+        <div class="word_box_evaluate">
+          <div>累计销售：<span></span></div>
+          <div style="color: silver;">|</div>
+          <div>送积分：<span></span></div>
+        </div>
+        <!-- 选择商品数量 -->
+        <div style="display: flex;align-items: center;">
+          <span style="margin-right: 45px;margin-left: 20px;">数量：</span>
+          <div class="word_box_number">
+            <em class="jian">-</em>
+            <input type="text" value="1" class="num"
+              oninput="if(value>99)value=99;if(value<1) value=1;value=value.replace(/[^\d]/g,'')"/>
+            <em class="add">+</em>
+          </div>
+          <span style="margin-left: 15px;">件</span>
+        </div>
+        <div style="display: flex">
+          <span style="margin-left: 20px;">类型：</span>
+          <div id="shopType">
+          </div>
+        </div>
+        <!-- 立即购买和加入购物车 -->
+        <div class="word_box_buttom">
+          <div id="buyNow">立即购买</div>
+          <div id="addCart">加入购物车</div>
+        </div>
+        <div class="word_box_promise">
+          <div>服务承诺</div>
+          <div>不支持七天无理由退换货</div>
+          <div>正品保证</div>
+          <div>极速退款</div>
+          <div>支付方式↓</div>
+        </div>
+        <div class="word_box_warn">
+          <div>检测到您当前处于非安全网络环境,部分商品信息可能不准确,请在交易支付页面再次确认商品价格信息。</div>
+        </div>
+      </div>
+    </div>
+    <div class="middle_box">
+      <!-- /*border: 1px solid black;*/ -->
+      <ul class="nav nav-tabs" style="margin-left: 0;">
+        <li class="active"><a href="#home" data-toggle="tab" style="font-weight: bold;color: black;">商品详情</a></li>
+        <li><a href="#profile" data-toggle="tab" style="font-weight: bold;color: black;">评价</a></li>
+      </ul>
+      <div class="tab-content">
+        <!-- 商品详情分页 -->
+        <div class="tab-pane active" id="home">
+          <div style="border: 1px solid #dddddd;padding: 10px;">
+            <span style="display: block;margin: 15px 0;">品牌名称：<span id="cmaBrname"></span></span>
+            <div class="tab_div_line">
+              <div>厂名：<span id="cmaName"></span></div>
+              <div>厂址：<span id="cmaAddress"></span></div>
+              <div>厂家联系方式：<span id="cmaPhone"></span></div>
+            </div>
+            <div class="tab_div_line">
+              <div>保质期：<span id="cmaDay"></span></div>
+              <div>产地：<span id="cmaCadress"></span></div>
+              <div>净含量：<span id="cmaWeight"></span></div>
+            </div>
+            <div class="tab_div_line">
+              <div>储存环境：<span id="cmaEnviro"></span></div>
+            </div>
+          </div>
+          <div style="display: block;background-color:	LightGrey;height:30px;line-height: 30px;">
+            <!-- <div style="margin-left: 10px;">生产日期: 公元前2020 至 公元后2020</div> -->
+          </div>
+          <div style="text-align: center; margin-top: 10px;" id="image_detail">
+            <!-- <img src="" alt="商品详情图" > -->
+          </div>
+        </div>
+        <!--  评价分页 -->
+        <div class="tab-pane" id="profile">
+          <div>
+            <!--   具体的商品评论 -->
+            <div id="comment_group">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--    尾部导航条-->
+  <div class="bottem-nav-box" style="display: flex;justify-content: center;">
+    <div class="row clearfix bottem">
+      <!--        正品保障+购物指南-->
+      <div class="col-md-12 column">
+        <!--            图标+第一块文字-->
+        <div class="bottem-text text1">
+          <img src="/images/icon.jpg">
+          <span>正品保障，提供发票</span><br><br>
+          <br><span class="bottem-text-title">购物指南</span>
+          <div class="bottem-text-content">
+            <span>购物流程</span>
+            <br><span>会员介绍</span>
+            <br><span>生活旅行团购</span>
+            <br><span>常见问题</span>
+            <br><span>购物指南</span>
+          </div>
+        </div>
+        <!--            图标+第二块文字-->
+        <div class="bottem-text text1">
+          <img src="/images/icon.jpg">
+          <span>正品保障，提供发票</span><br><br>
+          <br><span class="bottem-text-title">购物指南</span>
+          <div class="bottem-text-content">
+            <span>购物流程</span>
+            <br><span>会员介绍</span>
+            <br><span>生活旅行团购</span>
+            <br><span>常见问题</span>
+            <br><span>购物指南</span>
+          </div>
+        </div>
+        <!--            图标+第三块文字-->
+        <div class="bottem-text text1">
+          <img src="/images/icon.jpg">
+          <span>正品保障，提供发票</span><br><br>
+          <br><span class="bottem-text-title">购物指南</span>
+          <div class="bottem-text-content">
+            <span>购物流程</span>
+            <br><span>会员介绍</span>
+            <br><span>生活旅行团购</span>
+            <br><span>常见问题</span>
+            <br><span>购物指南</span>
+          </div>
+        </div>
+        <!--            图标+第四块文字-->
+        <div class="bottem-text1 text1">
+          <img src="/images/icon.jpg">
+          <span>正品保障，提供发票</span><br><br>
+          <br><span class="bottem-text-title">购物指南</span>
+          <div class="bottem-text-content">
+            <span>购物流程</span>
+            <br><span>会员介绍</span>
+            <br><span>生活旅行团购</span>
+            <br><span>常见问题</span>
+            <br><span>购物指南</span>
+          </div>
+        </div>
+        <div class="erweima"></div>
+
+      </div>
+      <!--        底部介绍-->
+      <div class="col-md-12 column footer">
+        <ul>
+          <span>关于我们</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+          <span>联系我们</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+          <span>联系客服</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+          <span>营销中心</span>
+        </ul>
+        <ul>
+          <span>地址：浙江省宁波市鄞州区柏庭养老管理集团主楼5楼 邮编：31500 电话00-000000000 邮箱：bangjifans.com</span>
+
+        </ul>
+        <ul>
+          <span>京ICP备08001421号京公网安备110108007702</span>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,307 @@
+.main_box{
+    display: flex;
+    justify-content: center;
+    height: 680px;
+    width: 1000px;
+}
+.image_box{
+    width: 500px;
+    height: 400px;
+    /* margin-left:50px; */
+    display:inline-block
+}
+.li_box img{
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+}
+#gallary{
+    padding: 0;
+    margin-top: 10px;
+    padding-top:5px ;
+    font-size: 0;
+    border-top: 2px solid black;
+}
+#gallary li{
+    border: 1px solid ;
+    float: left ;
+    list-style-type:none;
+    margin-right: 45px;
+}
+.word_box{
+    display:inline-block;
+    width: 500px;
+    /* height: 400px; */
+    /* border: 1px solid red; */
+    vertical-align: top;
+    margin:  0 15px ;
+}
+.word_box_h1{
+    font-size: 16px;
+    height: 40px;
+    line-height: 20px;
+    font-weight: bold;
+}
+.word_box_price{
+    font-size: 14px;
+    background-color: silver;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+    margin: 5px 0;
+}
+.price{
+    color: red;
+    font-size: 20px;
+    padding-left: 40px;
+    font-weight: bold;
+}
+.word_box_city{
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+    display: block;
+}
+.word_box_evaluate{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-top: 1px dashed slategrey;
+    border-bottom: 1px dashed  slategrey;
+}
+.word_box_evaluate span{
+    color: red;
+}
+.word_box_number{
+    font-size: 10px;
+    height: 30px;
+    line-height: 30px;
+    /* padding-left: 20px; */
+    display: block;
+    margin: 10px 0;
+}
+.word_box_number{
+    border: 1px solid #dbdbdb;
+    width: 110px;
+    line-height: 26px;
+    overflow: hidden;
+}
+.word_box_number em{
+    display: block;
+    height: 30pxpx;
+    width: 34px;
+    float: left;
+    color: #7A7979;
+    border-right: 1px solid #dbdbdb;
+    text-align: center;
+    cursor: pointer;
+}
+.word_box_number .num{
+    display: block;
+    float: left;
+    text-align: center;
+    width: 40px;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 30pxpx;
+    border: 0;
+}
+.word_box_number em.add{
+    float: right;
+    border-right: 0;
+    border-left: 1px solid #dbdbdb;
+}
+.every_type{
+    margin-left: 50px;
+ }
+ .one_type{
+     display: flex;
+     flex-wrap: wrap;
+ }
+ .type{
+     /* display: block; */
+}
+.goods_attrli{
+    color:#333;
+    width:120px;
+    margin:5px;
+    overflow:hidden;
+    position:relative;
+    float:left;
+    text-align:center;
+    vertical-align:middle;
+    border:1px solid #999;
+    text-indent:0;
+    cursor:pointer
+}
+.sel{
+     border:1px solid rgb(211, 18, 82);
+     color:red;
+}
+.noSel{
+    border:1px dotted #CCC;
+    color:#7A7979;
+    pointer:none;
+}
+.word_box_buttom{
+    height: 40px;
+    line-height: 40px;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+.word_box_buttom div{
+    width: 200px;
+    display: inline-block;
+    text-align: center;
+    margin-left: 15px;
+    background-color:pink;
+    color: red;
+    border: 1px solid red;
+}
+.word_box_buttom div:hover{
+    cursor: pointer;
+}
+.word_box_buttom div:last-child{
+    background-color:red;
+    color: white;
+}
+.word_box_promise{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+.word_box_warn{
+    font-size: 10px;
+    color: slategray;
+    margin-top: 30px;
+}
+.recommend_box_image{
+    background-image: url(../images/1.jpg);
+    height: 140px;
+    position: relative;
+}
+.recommend_box_image span{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    background-color: slategrey;
+    opacity: 0.8;
+    font-weight: bold;
+}
+.middle_box{
+    width: 1000px;
+}
+.aboutshop_box{
+    border: 1px solid silver;
+    display: block;
+    width: 200px;
+
+}
+.shop_box{
+    /* border: 1px solid slateray; */
+    height: 50px;
+    line-height: 50px;
+    padding: 0 60px 0 10px;
+    background-color: silver;
+}
+#image_detail img{
+    width: 800px;
+}
+.descrip_box{
+    height: 40px;
+}
+.descrip_box ul li{
+    list-style: none;
+    float: left;
+    width: 45px;
+}
+.buttom_box{
+    text-align: center;
+    padding: 10px 0;
+}
+.search_box{
+    border: 1px solid silver;
+    margin: 20px 0;
+    width: 200px;
+}
+.searchtitle_box{
+    background-color: black;
+    color: white;
+    height: 25px;
+    line-height: 25px;
+}
+.search_box span{
+    margin: 15px 0;
+}
+.tab_div_line div{
+    display: inline-block;
+    width: 280px;
+    margin: 5px 0;
+}
+.headimage_box{
+    width: 160px;
+    text-align: center;
+}
+.headimage_box img{
+    margin: 10px 30px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    padding: 3px;
+    background-color: #fff;
+}
+.comment_textbox textarea{
+    width: 840px;
+    height: 170px;
+    resize: none;
+    outline: none;
+    border-radius: 10px;
+}
+.comment_box{
+    width: 1000px;
+    border-top: 1px solid black;
+    display: flex;
+}
+#buyer_img{
+    margin: 10px 30px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    padding: 3px;
+    background-color: #fff;
+} 
+.comment_img{
+    height: 100px;
+    width: 100px;
+}
+.a{
+    width: 900px;
+}
+.a label{
+    width: 100px;
+}
+.buyer_name{
+    margin-top: 5px;
+    color:gray;
+}
+.first_comment{
+    margin: 5px 0 20px 0;
+}
+.twice_comment{
+    margin: 5px 0 20px 0;
+}
+.merchant_reply{
+    /* background-color: gainsboro; */
+    color:darkblue;
+    margin-left: 100px;
+}
+.comment_time{
+    float:right;
+}

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjf.mapper.BjfCommodityMapper">
+  <resultMap id="BaseResultMap" type="com.bjf.pojo.BjfCommodity">
+    <id column="cmd_id" jdbcType="INTEGER" property="cmdId" />
+    <result column="cmd_name" jdbcType="VARCHAR" property="cmdName" />
+    <result column="cmd_image" jdbcType="VARCHAR" property="cmdImage" />
+    <result column="cmd_price" jdbcType="DECIMAL" property="cmdPrice" />
+    <result column="cg_id" jdbcType="INTEGER" property="cgId" />
+    <result column="el_id" jdbcType="INTEGER" property="elId" />
+    <result column="cmd_hot" jdbcType="INTEGER" property="cmdHot" />
+    <result column="cmd_cake" jdbcType="INTEGER" property="cmdCake" />
+    <result column="cmd_recommend" jdbcType="INTEGER" property="cmdRecommend" />
+    <result column="cmd_score" jdbcType="INTEGER" property="cmdScore" />
+    <result column="cmd_count_status" jdbcType="INTEGER" property="cmdCountStatus" />
+    <result column="cmd_discount" jdbcType="DECIMAL" property="cmdDiscount" />
+    <result column="cmd_support" jdbcType="DECIMAL" property="cmdSupport" />
+  </resultMap>
+    <resultMap id="BaseResultMap1" type="com.bjf.pojo.BjfCommodity">
+        <id column="cmd_id" jdbcType="INTEGER" property="cmdId" />
+        <result column="cmd_name" jdbcType="VARCHAR" property="cmdName" />
+        <result column="cmd_image" jdbcType="VARCHAR" property="cmdImage" />
+        <result column="cmd_price" jdbcType="DECIMAL" property="cmdPrice" />
+        <result column="cg_id" jdbcType="INTEGER" property="cgId" />
+        <result column="el_id" jdbcType="INTEGER" property="elId" />
+        <result column="cmd_hot" jdbcType="INTEGER" property="cmdHot" />
+        <result column="cmd_cake" jdbcType="INTEGER" property="cmdCake" />
+        <result column="cmd_recommend" jdbcType="INTEGER" property="cmdRecommend" />
+        <result column="cmd_score" jdbcType="INTEGER" property="cmdScore" />
+        <result column="cmd_count_status" jdbcType="INTEGER" property="cmdCountStatus" />
+        <result column="cmd_discount" jdbcType="DECIMAL" property="cmdDiscount" />
+        <result column="cmd_support" jdbcType="INTEGER" property="cmdSupport" />
+        <collection property="bjfCommodityDetails" ofType="com.bjf.pojo.BjfCommodityDetails" >
+            <id column="cma_id" jdbcType="INTEGER" property="cmaId" />
+            <result column="cma_name" jdbcType="VARCHAR" property="cmaName" />
+            <result column="cma_address" jdbcType="VARCHAR" property="cmaAddress" />
+            <result column="cma_day" jdbcType="VARCHAR" property="cmaDay" />
+            <result column="cma_phone" jdbcType="VARCHAR" property="cmaPhone" />
+            <result column="cma_brname" jdbcType="VARCHAR" property="cmaBrname" />
+            <result column="cma_cadress" jdbcType="VARCHAR" property="cmaCadress" />
+            <result column="cma_weight" jdbcType="VARCHAR" property="cmaWeight" />
+            <result column="cma_enviro" jdbcType="VARCHAR" property="cmaEnviro" />
+            <result column="cmd_id" jdbcType="INTEGER" property="cmdId" />
+            <result column="cma_image" jdbcType="VARCHAR" property="cmaImage" />
+            <result column="cma_picture" jdbcType="VARCHAR" property="cmaPicture" />
+        </collection>
+        <collection property="bjfSpfList" ofType="com.bjf.pojo.BjfSpf" javaType="java.util.List">
+            <id column="spf_id" jdbcType="INTEGER" property="spfId" />
+            <result column="spf_content" jdbcType="VARCHAR" property="spfContent" />
+            <result column="spf_count" jdbcType="INTEGER" property="spfCount" />
+            <result column="cmd_id" jdbcType="INTEGER" property="cmdId" />
+            <result column="spf_price" jdbcType="DECIMAL" property="spfPrice" />
+            <result column="spf_image" jdbcType="VARCHAR" property="spfImage" />
+        </collection>
+    </resultMap>
+
+  <sql id="Base_Column_List">
+    cmd_id, cmd_name, cmd_image, cmd_price, cg_id, el_id, cmd_hot, cmd_cake, cmd_recommend, 
+    cmd_score, cmd_count_status,cmd_discount,cmd_support
+  </sql>
+  <!--  推荐商品展示-->
+  <select id="recommend" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+         from bjf_commodity
+         where cmd_recommend=1;
+    </select>
+
+  <!--  热销商品展示-->
+  <select id="hot" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from bjf_commodity
+        where cmd_hot=1;
+    </select>
+
+  <!-- 首页商品展示 -->
+  <select id="shouzhan" resultMap="BaseResultMap">
+    SELECT
+    `cmd_id`,`cmd_name`,`cmd_image`,`cmd_price`
+    FROM `bjf_commodity`
+    ORDER BY `cmd_id` DESC LIMIT 0,15;
+  </select>
+
+  <!-- 点击分类类目跳转到分类页面 -->
+  <select id="fenlei" resultMap="BaseResultMap" parameterType="Integer">
+    select
+     `cmd_id`,`cmd_name`,`cmd_image`,`cmd_price`
+     from `bjf_commodity`
+     where cg_id=#{cgId}
+  </select>
+
+    <!-- 商品详情页展示 -->
+    <select id="selectCommodityDetails" parameterType="java.lang.Integer" resultMap="BaseResultMap1">
+    SELECT
+	a.cmd_id,a.`cmd_name`,a.`cmd_price`,a.`cmd_cake`,a.`cmd_score`,a.`cmd_count_status`,a.`cmd_discount`,
+	b.cma_id,b.`cma_name`,b.`cma_address`,b.`cma_day`,b.`cma_phone`,b.`cma_brname`,b.`cma_cadress`,b.`cma_weight`,b.`cma_enviro`,b.`cma_image`,b.`cma_picture`,
+	c.spf_id,c.`spf_content`,c.`spf_count`,c.`spf_price`,c.`spf_image`
+    FROM `bjf_commodity` a
+    JOIN `bjf_commodity_details` b
+    ON a.`cmd_id`=b.`cmd_id`
+    JOIN `bjf_spf` c
+    ON a.`cmd_id`=c.`cmd_id` and a.`cmd_id`=#{cmdId};
+  </select>
+
+    <!-- 会员中心随机展示商品 -->
+    <select id="selectVipCommodity" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM `bjf_commodity`
+        WHERE `cmd_id` >= ((SELECT MAX(`cmd_id`) FROM `bjf_commodity`)-(SELECT MIN(`cmd_id`) FROM `bjf_commodity`)) * RAND() + (SELECT MIN(`cmd_id`) FROM `bjf_commodity`)
+        AND `cmd_count_status`=1
+        LIMIT 15;
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from bjf_commodity
+        where cmd_id = #{cmdId,jdbcType=INTEGER}
+    </select>
+</mapper>

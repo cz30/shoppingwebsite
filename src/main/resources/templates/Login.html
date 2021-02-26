@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="/css/bootstrap.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="/js/jquery-2.1.4.min.js"></script>
+
+    <!-- 极验国内使用 -->
+    <script type="text/javascript" charset="utf-8" src="//g.alicdn.com/sd/ncpc/nc.js?t=2015052012"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="/js/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="/css/login.css">
+    <script src="/js/login.js"></script>
+    <!--<script src="/js/md.js"></script>-->
+    <script src="/js/m.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+</head>
+<body>
+
+<div class="container-fluid">
+    <!--    主体-->
+    <img class="img1" src="/images/logo.png" height="140" width="160"/>
+    <div class="row clearfix content">
+        <div class="col-md-4 column">
+        </div>
+        <div class="col-md-4 column login">
+
+            <div class="tabbable">
+                <!--                    登录方式切换-->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab">账号密码登录</a></li>
+                    <li><a href="#tab2" data-toggle="tab">手机验证码登录</a></li>
+                </ul> 
+
+                <div class="tab-content">
+                    <!--                登录方式一-->
+                    <div class="tab-pane  active " id="tab1"  style="margin-top: 20px;">
+                        <form role="form" id="fm1">
+                            <input type="hidden" value="0" id="hidden1">
+                            <div class="form-group">
+
+                                <label for="exampleInputEmail">账号</label>
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                <input type="email" class="form-control" id="exampleInputEmail" placeholder="请输入账号" name="username"/>
+
+                                <span id="emailError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword">密码</label>
+                                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                                <input type="password" class="form-control" id="exampleInputPassword" placeholder="请输入密码" />
+                                <span id="passwordError"></span>
+                                <input type="hidden" name="pwd" id="pwd">
+                            </div>
+                            <!--No-Captcha渲染的位置，其中 class 中必须包含 nc-container 阿里云滑块-->
+                            <span class="checkit">验证码:</span><div id="your-dom-id" class="nc-container"></div>
+                        </form>
+                    </div>
+                    <!--                登录方式二-->
+                    <div class="tab-pane " id="tab2">  
+                        <form role="form" id="fm2">
+                            <input type="hidden" value="1" id="hidden2">
+                            <div class="form-group">
+                                <label for="exampleInputPhone">手机号</label>
+                                <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
+
+                                <input type="text" class="form-control" id="exampleInputPhone" placeholder="请输入手机号" name="phoneNumber"/>
+                                <span id="phoneError"></span>
+                            </div>
+                            <div class="form-group checkGroup" style="float: left;">
+                                <label for="exampleInputCheck">验证码</label>
+                                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+
+                                <input type="text" class="form-control" id="exampleInputCheck" placeholder="请输入验证码" name="code"/>
+                                <span id="checkError"></span>
+                            </div>
+<!--                             <button id="sendCheck">发送验证码</button>-->
+                            <button class="sendButton" id="sendCheck">获取验证码</button>
+                            <button class="sendButton" id="J_resetCode" style="display:none;" disabled="disabled">
+                                <span id="J_second">60</span>
+                                秒后重发
+                            </button>
+
+                        </form>  
+                    </div> 
+                </div>
+<!--                2个隐藏域-->
+                <input type="hidden" id="logingType" name="logingType" value="BusyRealm">
+                <input type="hidden" id="sessionId" name="sessionId"/>
+
+                <button type="submit" class="btn btn-default" id="check" >登录</button>
+                <div class="link"><a href="PhoneReset.html">忘记密码</a>&nbsp&nbsp|&nbsp<a href="Register.html">去注册</a></div>
+            </div>
+        </div>
+
+        <div class="col-md-4 column">
+        </div>
+    </div>
+    <!--    尾部-->
+    <div class="row clearfix footer">
+        <div class="col-md-12 column">
+            <ul>
+                <span>关于我们</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+                <span>联系我们</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+                <span>联系客服</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+                <span>营销中心</span>
+            </ul>
+            <ul>
+                <span>地址：浙江省宁波市鄞州区柏庭养老管理集团主楼5楼 邮编：31500 电话00-000000000 邮箱：bangjifans.com</span>
+
+            </ul>
+            <ul>
+                <span>京ICP备08001421号京公网安备110108007702</span>
+
+            </ul>
+        </div>
+    </div>
+
+</div>
+</div>
+<!--极验脚本-->
+<script>
+    function md() {
+        var p = $("#exampleInputPassword").val();
+        var e = getpass(p);
+        $("#pwd").val(e);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjf.mapper.BjfCouponMapper">
+  <resultMap id="BaseResultMap" type="com.bjf.pojo.BjfCoupon">
+    <id column="cn_id" jdbcType="INTEGER" property="cnId" />
+    <result column="cn_name" jdbcType="VARCHAR" property="cnName" />
+    <result column="cn_detal" jdbcType="INTEGER" property="cnDetal" />
+    <result column="cn_usetime" jdbcType="TIMESTAMP" property="cnUsetime" />
+    <result column="cn_expire" jdbcType="DATE" property="cnExpire" />
+    <result column="cn_value" jdbcType="INTEGER" property="cnValue" />
+    <result column="cn_low_value" jdbcType="INTEGER" property="cnLowValue" />
+    <result column="cn_status" jdbcType="INTEGER" property="cnStatus" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cn_id, cn_name, cn_detal, cn_usetime, cn_expire, cn_value, cn_low_value, cn_status, 
+    u_id
+  </sql>
+  <!--删除优惠券-->
+  <delete id="deleteCoupon">
+    delete  from bjf_coupon where cn_id = #{cnId}
+  </delete>
+
+
+  <!--插入一条数据-->
+  <insert id="insertConpon" parameterType="com.bjf.pojo.BjfCoupon" keyProperty="cnId" keyColumn="cn_id" useGeneratedKeys="true">
+    insert into bjf_coupon (cn_name, cn_detal, cn_usetime,
+      cn_expire, cn_value, cn_low_value,
+      cn_status, u_id)
+    values (#{cnName},#{cnDetal},#{cnUsetime},#{cnExpire},#{cnValue},#{cnLowValue},#{cnStatus},#{uId})
+  </insert>
+
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bjf_coupon
+    where cn_id = #{cnId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByUid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bjf_coupon
+    where u_id = #{uId,jdbcType=INTEGER} and DATE(cn_expire) - DATE(NOW()) >=0 ORDER BY cn_status
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bjf_coupon
+    where cn_id = #{cnId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="cn_id" keyProperty="cnId" parameterType="com.bjf.pojo.BjfCoupon" useGeneratedKeys="true">
+    insert into bjf_coupon (cn_name, cn_detal, cn_usetime,
+      cn_expire, cn_value, cn_low_value,
+      cn_status, u_id)
+    values (#{cnName,jdbcType=VARCHAR}, #{cnDetal,jdbcType=VARCHAR}, #{cnUsetime,jdbcType=TIMESTAMP},
+      #{cnExpire,jdbcType=DATE}, #{cnValue,jdbcType=INTEGER}, #{cnLowValue,jdbcType=INTEGER},
+      #{cnStatus,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="cn_id" keyProperty="cnId" parameterType="com.bjf.pojo.BjfCoupon" useGeneratedKeys="true">
+    insert into bjf_coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cnName != null">
+        cn_name,
+      </if>
+      <if test="cnDetal != null">
+        cn_detal,
+      </if>
+      <if test="cnUsetime != null">
+        cn_usetime,
+      </if>
+      <if test="cnExpire != null">
+        cn_expire,
+      </if>
+      <if test="cnValue != null">
+        cn_value,
+      </if>
+      <if test="cnLowValue != null">
+        cn_low_value,
+      </if>
+      <if test="cnStatus != null">
+        cn_status,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cnName != null">
+        #{cnName,jdbcType=VARCHAR},
+      </if>
+      <if test="cnDetal != null">
+        #{cnDetal,jdbcType=VARCHAR},
+      </if>
+      <if test="cnUsetime != null">
+        #{cnUsetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cnExpire != null">
+        #{cnExpire,jdbcType=DATE},
+      </if>
+      <if test="cnValue != null">
+        #{cnValue,jdbcType=INTEGER},
+      </if>
+      <if test="cnLowValue != null">
+        #{cnLowValue,jdbcType=INTEGER},
+      </if>
+      <if test="cnStatus != null">
+        #{cnStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bjf.pojo.BjfCoupon">
+    update bjf_coupon
+    <set>
+      <if test="cnName != null">
+        cn_name = #{cnName,jdbcType=VARCHAR},
+      </if>
+      <if test="cnDetal != null">
+        cn_detal = #{cnDetal,jdbcType=VARCHAR},
+      </if>
+      <if test="cnUsetime != null">
+        cn_usetime = #{cnUsetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cnExpire != null">
+        cn_expire = #{cnExpire,jdbcType=DATE},
+      </if>
+      <if test="cnValue != null">
+        cn_value = #{cnValue,jdbcType=INTEGER},
+      </if>
+      <if test="cnLowValue != null">
+        cn_low_value = #{cnLowValue,jdbcType=INTEGER},
+      </if>
+      <if test="cnStatus != null">
+        cn_status = #{cnStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where cn_id = #{cnId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bjf.pojo.BjfCoupon">
+    update bjf_coupon
+    set cn_name = #{cnName,jdbcType=VARCHAR},
+      cn_detal = #{cnDetal,jdbcType=VARCHAR},
+      cn_usetime = #{cnUsetime,jdbcType=TIMESTAMP},
+      cn_expire = #{cnExpire,jdbcType=DATE},
+      cn_value = #{cnValue,jdbcType=INTEGER},
+      cn_low_value = #{cnLowValue,jdbcType=INTEGER},
+      cn_status = #{cnStatus,jdbcType=INTEGER},
+      u_id = #{uId,jdbcType=INTEGER}
+    where cn_id = #{cnId,jdbcType=INTEGER}
+  </update>
+
+
+
+
+</mapper>

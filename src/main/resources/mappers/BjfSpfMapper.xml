@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjf.mapper.BjfSpfMapper">
+  <resultMap id="BaseResultMap" type="com.bjf.pojo.BjfSpf">
+    <id column="spf_id" jdbcType="INTEGER" property="spfId" />
+    <result column="spf_content" jdbcType="VARCHAR" property="spfContent" />
+    <result column="spf_count" jdbcType="INTEGER" property="spfCount" />
+    <result column="cmd_id" jdbcType="INTEGER" property="cmdId" />
+    <result column="spf_price" jdbcType="DECIMAL" property="spfPrice" />
+    <result column="spf_image" jdbcType="VARCHAR" property="spfImage" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    spf_id, spf_content, spf_count, cmd_id, spf_price, spf_image
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bjf_spf
+    where spf_id = #{spfId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bjf_spf
+    where spf_id = #{spfId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="spf_id" keyProperty="spfId" parameterType="com.bjf.pojo.BjfSpf" useGeneratedKeys="true">
+    insert into bjf_spf (spf_content, spf_count, cmd_id, 
+      spf_price, spf_image)
+    values (#{spfContent,jdbcType=VARCHAR}, #{spfCount,jdbcType=INTEGER}, #{cmdId,jdbcType=INTEGER}, 
+      #{spfPrice,jdbcType=DECIMAL}, #{spfImage,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="spf_id" keyProperty="spfId" parameterType="com.bjf.pojo.BjfSpf" useGeneratedKeys="true">
+    insert into bjf_spf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="spfContent != null">
+        spf_content,
+      </if>
+      <if test="spfCount != null">
+        spf_count,
+      </if>
+      <if test="cmdId != null">
+        cmd_id,
+      </if>
+      <if test="spfPrice != null">
+        spf_price,
+      </if>
+      <if test="spfImage != null">
+        spf_image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="spfContent != null">
+        #{spfContent,jdbcType=VARCHAR},
+      </if>
+      <if test="spfCount != null">
+        #{spfCount,jdbcType=INTEGER},
+      </if>
+      <if test="cmdId != null">
+        #{cmdId,jdbcType=INTEGER},
+      </if>
+      <if test="spfPrice != null">
+        #{spfPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="spfImage != null">
+        #{spfImage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bjf.pojo.BjfSpf">
+    update bjf_spf
+    <set>
+      <if test="spfContent != null">
+        spf_content = #{spfContent,jdbcType=VARCHAR},
+      </if>
+      <if test="spfCount != null">
+        spf_count = #{spfCount,jdbcType=INTEGER},
+      </if>
+      <if test="cmdId != null">
+        cmd_id = #{cmdId,jdbcType=INTEGER},
+      </if>
+      <if test="spfPrice != null">
+        spf_price = #{spfPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="spfImage != null">
+        spf_image = #{spfImage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where spf_id = #{spfId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bjf.pojo.BjfSpf">
+    update bjf_spf
+    set spf_content = #{spfContent,jdbcType=VARCHAR},
+      spf_count = #{spfCount,jdbcType=INTEGER},
+      cmd_id = #{cmdId,jdbcType=INTEGER},
+      spf_price = #{spfPrice,jdbcType=DECIMAL},
+      spf_image = #{spfImage,jdbcType=VARCHAR}
+    where spf_id = #{spfId,jdbcType=INTEGER}
+  </update>
+</mapper>

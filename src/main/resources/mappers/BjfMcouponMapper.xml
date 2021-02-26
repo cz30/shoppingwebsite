@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjf.mapper.BjfMcouponMapper">
+  <resultMap id="BaseResultMap" type="com.bjf.pojo.BjfMcoupon">
+    <id column="mcp_id" jdbcType="INTEGER" property="mcpId" />
+    <result column="mdp_id" jdbcType="INTEGER" property="mdpId" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mcp_id, mdp_id, u_id
+  </sql>
+
+  <!--删除数据-->
+  <delete id="deleteCoupon" parameterType="integer">
+    delete * from bjf_mcoupon where mdpId = #{id}
+  </delete>
+
+  <!--查询用户是否有该优惠券-->
+  <select id="selectCouPon" resultType="java.lang.Integer">
+    select mcp_id from bjf_mcoupon where u_id = #{param1} and mdp_id = #{param2}
+  </select>
+
+  <insert id="insertCoupon">
+    insert into bjf_mcoupon (mdp_id,u_id) values(#{param1},#{param2})
+  </insert>
+</mapper>

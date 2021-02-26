@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>购物车</title>
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+	<script src="/js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+	
+    <link rel="stylesheet" type="text/css" href="/css/mycart.css">
+	<link rel="stylesheet" type="text/css" href="/css/headEnd.css"/>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+	<script src="/js/headEnd.js"></script>
+	<script type="text/javascript" src="/js/mycart.js"></script>
+	
+</head>
+
+<body>
+	
+	<!--    头部导航条-->
+	<div class="header-box">
+		<div class="clearfix top">
+			<div class="col-md-12" style="padding: 0;">
+				<span class="leftText">欢迎你！
+					<a class="exit_login">退出</a>
+				</span>
+				<span class="rightText">
+					<a href="Index.html">首页</a>|
+					<a id="order">我的订单</a>|
+					<a id="mycart">我的购物车</a>|
+					<a id="person">个人中心</a>
+				</span>
+			</div>
+			<div class="search">
+				<img src="/images/logo.png">
+			</div>
+		</div>
+	</div>
+	
+	<!-- 购物车为空时 -->
+	<div id="zyCart-Empty" class="container" style="display: none;">
+		<img src="/images/EmptyCart.png" >
+		<br>
+		<button type="button" id="backtoindex"><a>去逛逛</a></button>
+	</div>
+	<!-- 购物车主题 -->
+	<div id="zyCart" class="container" >
+	
+	
+		<table id="cartTable">
+			<thead>
+				<tr>
+					<th class="zy-check">
+						<label><input class="check-all check" type="checkbox"/></label>
+						
+					</th>
+					<th class="zy-item" style="line-height: 49px;"><span style="float: left;line-height: 49px;">全选</span>商品</th>
+					<th class="zy-price">单价（元）</th>
+					<th class="zy-amount">数量</th>
+					<th class="zy-sum">小计（元）</th>
+					<th class="zy-op">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+	</div>
+	
+	<!-- 浮动提示框 -->
+	<div id="Floating-frame">
+		不能再少了！
+	</div>
+	
+	<!-- loading -->
+	<div id="loading">
+		
+		<div class="wrap">
+			<!-- <p>loadingA</p> -->
+			<div class="k-line" style="height: 80px;opacity: 0;"></div>
+			<div class="k-line k-linA-1"></div>
+			<div class="k-line k-linA-2"></div>
+			<div class="k-line k-linA-3"></div>
+			<div class="k-line k-linA-4"></div>
+			<div class="k-line k-linA-5"></div>
+		</div>
+	</div>
+	
+	<!-- 底部浮动条 -->
+	<div class="container navbar navbar-default navbar-fixed-bottom" id="FloatBar">
+			
+		<div style="float: right;display: flex;align-items: center;">
+			
+			<div id="prompt-box">
+				请选择你想要的宝贝丫！
+			</div>
+			<div class="sum-text">
+				总价（不含运费）：¥&nbsp;<span id="priceTotal">0.00</span>
+			</div>
+			<div>
+				<button class="cartbtn" id="deleteAll" style="background-color: #b8b8b8;">删除</button>
+			</div>
+			<div>
+				<button id="settlementbtn" class="cartbtn" style="background-color: #009fe6;">结算</button>
+			</div>
+		</div>
+	</div>
+	
+	<div id="FBinstead" style="height: 60px;">
+		
+	</div>
+	
+	<!-- 尾部 -->
+	
+	<div class="bottem-nav-box" style="margin-top: 0">
+	  <div class="row clearfix bottem">
+	<!--        正品保障+购物指南-->
+	        <div class="col-md-12 column">
+	<!--            图标+第一块文字-->
+	            <div class="bottem-text text1">
+	                <img src="/images/icon.jpg">
+	                <span>正品保障，提供发票</span><br><br>
+	                <br><span class="bottem-text-title">购物指南</span>
+	                <div class="bottem-text-content">
+	                    <span>购物流程</span>
+	                    <br><span>会员介绍</span>
+	                    <br><span>生活旅行团购</span>
+	                    <br><span>常见问题</span>
+	                    <br><span>购物指南</span>
+	                </div>
+	            </div>
+	<!--            图标+第二块文字-->
+	            <div class="bottem-text text1">
+	                <img src="/images/icon.jpg">
+	                <span>正品保障，提供发票</span><br><br>
+	                <br><span class="bottem-text-title">购物指南</span>
+	                <div class="bottem-text-content">
+	                <span>购物流程</span>
+	                <br><span>会员介绍</span>
+	                <br><span>生活旅行团购</span>
+	                <br><span>常见问题</span>
+	                <br><span>购物指南</span>
+	                </div>
+	            </div>
+	<!--            图标+第三块文字-->
+	            <div class="bottem-text text1">
+	                <img src="/images/icon.jpg">
+	                <span>正品保障，提供发票</span><br><br>
+	                <br><span class="bottem-text-title">购物指南</span>
+	                <div class="bottem-text-content">
+	                    <span>购物流程</span>
+	                    <br><span>会员介绍</span>
+	                    <br><span>生活旅行团购</span>
+	                    <br><span>常见问题</span>
+	                    <br><span>购物指南</span>
+	                </div>
+	            </div>
+	<!--            图标+第四块文字-->
+	            <div class="bottem-text1 text1">
+	                <img src="/images/icon.jpg">
+	                <span>正品保障，提供发票</span><br><br>
+	                <br><span class="bottem-text-title">购物指南</span>
+	                <div class="bottem-text-content">
+	                    <span>购物流程</span>
+	                    <br><span>会员介绍</span>
+	                    <br><span>生活旅行团购</span>
+	                    <br><span>常见问题</span>
+	                    <br><span>购物指南</span>
+	                </div>
+	            </div>
+	            <div class="erweima"></div>
+	
+	</div>
+	<!--        底部介绍-->
+	        <div class="col-md-12 column footer">
+	            <ul>
+	                <span>关于我们</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+	                <span>联系我们</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+	                <span>联系客服</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|
+	                <span>营销中心</span>
+	            </ul>
+	            <ul>
+	                <span>地址：浙江省宁波市鄞州区柏庭养老管理集团主楼5楼 邮编：31500 电话00-000000000 邮箱：bangjifans.com</span>
+	
+	            </ul>
+	            <ul>
+	                <span>京ICP备08001421号京公网安备110108007702</span>
+	
+	            </ul>
+	        </div>
+	    </div>
+	</div>
+	
+	
+	
+</body>
+</html>
